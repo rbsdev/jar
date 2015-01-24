@@ -1,4 +1,4 @@
-var MeteorGroup = function(amount, game) {
+var MeteorGroup = function(game, amount) {
   this.amount = amount;
   this.game = game;
   this.meteor = null;
@@ -6,7 +6,7 @@ var MeteorGroup = function(amount, game) {
 
 MeteorGroup.prototype = {
   descend: function() {
-    this.meteor.y += 10;
+    this.meteors.y += 10;
   },
 
   create: function() {
