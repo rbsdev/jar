@@ -1,14 +1,18 @@
-//var preload = require('./preload.js');
-//var create = require('./create.js');
-var update = require('./update.js');
+var Player = require('./player.js');
 
-var game = new window.Phaser.Game(window.innerWidth, window.innerHeight, window.Phaser.AUTO, '', {
+var width = window.innerWidth;
+var height = window.innerHeight;
+
+var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   preload: function() {
     game.load.image('max', 'image/max.png');
   },
 
   create: function() {
-    game.add.sprite(0, 0, 'max');
+    Player.initialize(game);
   },
-  update: update
+
+  update: function() {
+    Player.walk();
+  }
 });
