@@ -1,5 +1,5 @@
 var Scenario ={
-  initialize: function() {
+  initialize: function(game) {
     this.scenario = game.add.sprite(0, -400, 'sky');
     this.scenario.scale.set(2);
 

@@ -1,4 +1,3 @@
-
 var Player = {
   initialize: function(life, power, name) {
     this.setAttr('attrs', {
