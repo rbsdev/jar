@@ -35,7 +35,7 @@ install:
 	./node_modules/bower/bin/bower install
 
 run:
-	$(HTTP_SERVER)
+	node server.js
 
 jshint:
 	$(JSHINT) $(DIR_APP_SCRIPT)*.js
@@ -64,5 +64,5 @@ test_js:
 
 build: jshint tree browserify minify
 
-watch: build
-	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js':'make build' '$(DIR_APP)*.html':'make tree'
+watch:
+	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js':'make build' '$(DIR_APP_SCRIPT)interface/*.js':'make build' '$(DIR_APP)*.html':'make tree'
