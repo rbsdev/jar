@@ -1,7 +1,8 @@
+var Scenario = require('./scenario.js');
 var Movement = require('./movement.js');
 var Player = require('./player.js');
-var Scenario = require('./scenario.js');
 var Interface = require('./interface.js');
+var Spaceship = require('./spaceship.js');
 
 var width = window.innerWidth;
 var height = window.innerHeight;
@@ -18,9 +19,11 @@ window.main = function(user) {
 
     create: function() {
       var userName = user && user.name ? user.name : 'Max';
-
+      
       Scenario.initialize(game, width, height);
-      Movement.initialize(game);
+      var spaceship = Spaceship.get(game);
+      Movement.initialize(game, spaceship);
+      
       Player.initialize(100, 100, userName);
 
       Interface.initialize(game);
