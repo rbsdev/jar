@@ -32,13 +32,15 @@ run:
 
 jshint:
 	$(JSHINT) $(DIR_APP_SCRIPT)*.js
-	echo "jshint was execute!"
+	echo "jshint was executed!"
 
 browserify:
 	$(BROWSERIFY) $(DIR_APP_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.js
+	echo "browserify was executed!"
 
 minify:
 	$(UGLIFY) $(DIR_BUILD_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.min.js
+	echo "minified!"
 
 tree:
 	mkdir -p build/ && mkdir -p build/script
