@@ -7,6 +7,8 @@ var Spaceship = require('./spaceship.js');
 var width = window.innerWidth;
 var height = window.innerHeight;
 
+var meteors;
+
 window.main = function(user) {
   var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
     preload: function() {
@@ -15,6 +17,7 @@ window.main = function(user) {
       game.load.crossOrigin = 'anonymous';
       game.load.image('sky', 'image/sky.png');
       game.load.image('max', userAvatarUrl);
+      game.load.image('meteor', 'image/giba.png');
     },
 
     create: function() {
@@ -41,6 +44,21 @@ window.main = function(user) {
         name: 'power',
         module: require('./power.js')
       }).render('power', '100');
+
+
+      meteors = game.add.group();
+      meteors.enableBody = true;
+      meteors.physicsBodyType = window.Phaser.Physics.ARCADE;
+
+      var meteor1 = meteors.create(2*48, 2*50, 'meteor');
+      meteor1 = meteors.anchor.setTo(0.5, 0.5);
+      meteor1.animations.add('fly', [0, 1, 2, 3], 20, true);
+      meteor1.play('fly');
+      meteor1.body.moves = false;
+
+      meteors.x = 500;
+      meteors.y = 200;
+
     },
 
     update: function() {
