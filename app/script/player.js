@@ -1,12 +1,20 @@
-var Player = function(life, power) {
-  this.setAttr('attrs', {
-    life  : life,
-    power : power,
-    time  : 0
-  }).resetPlayer();
-};
 
-Player.prototype = {
+var Player = {
+  initialize: function(life, power, name) {
+    this.setAttr('attrs', {
+      name: name,
+      life: life,
+      power: power,
+      time: 0
+    }).resetPlayer();
+
+    return this;
+  },
+
+  name: function() {
+    return this.name;
+  },
+
   life: function() {
     return this.life;
   },
@@ -35,8 +43,9 @@ Player.prototype = {
   },
 
   resetPlayer: function() {
+    this.setAttr('name', this.attrs.name);
     this.setAttr('life', this.attrs.life);
-    this.setAttr('power', this.attrs.life);
+    this.setAttr('power', this.attrs.power);
     this.setAttr('time', this.attrs.time);
     return this;
   }

@@ -1,7 +1,8 @@
-var Timer = function(game) {
-};
+var Timer = {
+  initialize: function(game) {
+    return this;
+  },
 
-Timer.prototype = {
   render: function(value) {
     return this;
   },
