@@ -41,23 +41,17 @@ run:
 	node server.js
 
 jshint:
-	printf 'jshinting scripts... '
 	$(JSHINT) $(DIR_APP_SCRIPT)*.js
-	echo "    \x1b[32mDONE!\x1b[0m"
 
-browserify:
-	printf 'browserifying scripts... '
+script: jshint
+	printf 'building scripts... '
 	$(BROWSERIFY) $(DIR_APP_SCRIPT)kickoff.js -o $(DIR_BUILD_SCRIPT)kickoff.js
 	$(BROWSERIFY) $(DIR_APP_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.js
-	echo "\x1b[32mDONE!\x1b[0m"
-
-minify:
-	printf 'uglifying scripts... '
 	$(UGLIFY) $(DIR_BUILD_SCRIPT)kickoff.js -o $(DIR_BUILD_SCRIPT)kickoff.min.js
 	$(UGLIFY) $(DIR_BUILD_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.min.js
-	echo "    \x1b[32mDONE!\x1b[0m"
+	echo "     \x1b[32mDONE!\x1b[0m"
 
-imgmin:
+image:
 	printf 'compressing images... '
 	$(IMAGEMIN) $(DIR_APP_IMAGE)* $(DIR_BUILD_IMAGE)
 	echo "   \x1b[32mDONE!\x1b[0m"
@@ -74,7 +68,7 @@ tree:
 test_js:
 	$(MOCHA) test/SpecRunner.html
 
-build: jshint tree browserify minify imgmin
+build: tree script image
 
 watch:
-	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js':'make build' '$(DIR_APP_SCRIPT)interface/*.js':'make build' '$(DIR_APP)*.html':'make tree'
+	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js':'make script' '$(DIR_APP)*.html':'make tree'
