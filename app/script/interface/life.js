@@ -1,14 +1,15 @@
-var Life = function(game) {
-};
+var Life = {
+  initialize: function(game) {
+    return this;
+  },
 
-Life.prototype = {
   render: function(value) {
     return this;
   },
 
   update: function(value) {
     return this;
-  }
+  },
 
   remove: function(value) {
     return this;

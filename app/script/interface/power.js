@@ -1,7 +1,8 @@
-var Power = function(game) {
-};
+var Power = {
+  initialize: function(game) {
+    return this;
+  },
 
-Power.prototype = {
   render: function(value) {
     return this;
   },

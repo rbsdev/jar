@@ -1,11 +1,12 @@
-var Interface = function(game) {
-  this.game     = game;
-  this.elements = {};
-};
+var Interface = {
+  initialize: function(game) {
+    this.game     = game;
+    this.elements = {};
+    return this;
+  },
 
-Interface.prototype = {
   import: function(element) {
-    this.elements[element.name] = new element.module(this.game);
+    this.elements[element.name] = element.module.initialize(this.game);
     return this;
   },
 
