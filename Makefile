@@ -7,9 +7,9 @@ JSHINT=$(NODE_MODULES)jshint/bin/jshint
 MOCHA=$(NODE_MODULES)mocha-phantomjs/bin/mocha-phantomjs
 
 DIR_APP=app/
-DIR_APP_SCRIPT=$(DIR_APP)src/script/
+DIR_APP_SCRIPT=$(DIR_APP)script/
 DIR_BUILD=build/
-DIR_BUILD_SCRIPT=$(DIR_BUILD)
+DIR_BUILD_SCRIPT=$(DIR_BUILD)script/
 
 .SILENT:
 
@@ -38,6 +38,7 @@ jshint:
 	echo "jshint was executed!"
 
 browserify:
+	echo $(DIR_BUILD_SCRIPT)
 	$(BROWSERIFY) $(DIR_APP_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.js
 	echo "browserify was executed!"
 
@@ -51,7 +52,6 @@ tree:
 
 test_js:
 	$(MOCHA) test/SpecRunner.html
-
 
 build: jshint tree browserify minify
 
