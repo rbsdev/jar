@@ -1,5 +1,5 @@
 var Controller = require('./controller.js');
-// var Scenario = require('./scenario.js');
+var Scenario = require('./scenario.js');
 
 var width = window.innerWidth;
 var height = window.innerHeight;
@@ -12,8 +12,8 @@ var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   },
 
   create: function() {
+    Scenario.initialize(game, width, height);
     Controller.initialize(game);
-    // Scenario.initialize(game);
   },
 
   update: function() {
