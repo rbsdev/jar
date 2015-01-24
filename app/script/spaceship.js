@@ -1,8 +1,10 @@
-var Spaceship = function(game) {
-  this.element = game.add.sprite(200, 200, 'max');
-  this.element.anchor.setTo(0, 0.5);
+var spaceship = function(game) {
+  if (this.element) { return this.element; }
+
+  this.game = game;
+  this.element = this.game.add.sprite(200, 200, 'max');
 
   return this.element;
 };
 
-module.exports = Spaceship;
+module.exports = spaceship;
