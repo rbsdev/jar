@@ -9,7 +9,7 @@ var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   },
 
   create: function() {
-    Player.initialize();
+    Player.initialize(game);
   },
 
   update: function() {
