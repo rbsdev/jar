@@ -44,7 +44,7 @@ window.main = function(user) {
         module: require('./power.js')
       }).render('power', '100');
 
-      var meteorGroup = new MeteorGroup(game, 1);
+      var meteorGroup = new MeteorGroup(game, 10);
       meteorGroup.create();
     },
 
