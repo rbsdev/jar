@@ -15,7 +15,7 @@ var Player = {
 
   walk: function() {
     this.player.body.velocity.x = 0;
-    // console.log(this.cursor);
+
     if (this.cursors.left.isDown) {
       this.player.body.velocity.x = -150;
       this.player.animations.play('left');
