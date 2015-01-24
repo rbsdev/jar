@@ -19,7 +19,8 @@ var assets,
 
 assets = [
   'vendor/phaser.min.js',
-  'script/main.min.js',
+  'script/main.js',
+  'image/spaceship.png',
   'image/layer01.png',
   'image/layer02.png',
   'image/layer03.png',
