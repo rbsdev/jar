@@ -2,7 +2,7 @@
 //var create = require('./create.js');
 var update = require('./update.js');
 
-var game = new window.Phaser.Game(800, 600, window.Phaser.AUTO, '', {
+var game = new window.Phaser.Game(window.innerWidth, window.innerHeight, window.Phaser.AUTO, '', {
   preload: function() {
     game.load.image('max', 'image/max.png');
   },
