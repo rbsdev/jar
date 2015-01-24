@@ -12,6 +12,7 @@ var Movement = {
 
     this.game.physics.startSystem(window.Phaser.Physics.ARCADE);
     this.game.physics.enable(this.element, window.Phaser.Physics.ARCADE);
+
     return this;
   },
 
