@@ -9,7 +9,7 @@ MOCHA=$(NODE_MODULES)mocha-phantomjs/bin/mocha-phantomjs
 DIR_APP=app/
 DIR_APP_SCRIPT=$(DIR_APP)script/
 DIR_BUILD=build/
-DIR_BUILD_SCRIPT=$(DIR_BUILD)script
+DIR_BUILD_SCRIPT=$(DIR_BUILD)script/
 
 .SILENT:
 
