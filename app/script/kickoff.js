@@ -1,4 +1,5 @@
 var assets,
+    data = [ ],
     done,
     index = 0,
     kickoff,
@@ -14,12 +15,29 @@ assets = [
 total = assets.length;
 
 done = function() {
-  console.log('kickoff::done');
+  var body = document.body;
+
+  assets.forEach(function(asset, index) {
+    var script;
+
+    if (!/\.js$/.test(asset)) {
+      return;
+    }
+
+    script = document.createElement('script');
+    script.textContent = data[index];
+
+    body.appendChild(script);
+  });
 };
 
-kickoff = function() {
+kickoff = function(pxhr) {
   var asset = assets[index],
       xhr = new XMLHttpRequest();
+
+  if ('response' in pxhr) {
+    data[index - 1] = pxhr.response;
+  }
 
   if (index === total) {
     return done();
@@ -28,7 +46,7 @@ kickoff = function() {
   index++;
 
   xhr.addEventListener('progress', progress);
-  xhr.addEventListener('load', kickoff);
+  xhr.addEventListener('load', kickoff.bind(this, xhr));
 
   xhr.open('GET', asset);
   xhr.send();
