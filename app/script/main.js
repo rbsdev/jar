@@ -30,7 +30,7 @@ window.main = function() {
       game.load.image('layer12', 'image/layer12.png');
       game.load.image('spaceship', 'image/spaceship.png');
 
-      game.load.image('meteor', 'image/giba.png');
+      game.load.image('meteor', 'image/meteor.png');
     },
 
     create: function() {
