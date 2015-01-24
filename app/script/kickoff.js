@@ -1,10 +1,21 @@
 var assets,
+    ask,
+    askGithub,
     data = [ ],
     done,
+    error,
+    grab,
     index = 0,
     kickoff,
+    landing,
+    load,
+    meter,
+    parse,
     progress,
-    total;
+    start,
+    total,
+    withGithub,
+    withoutGithub;
 
 assets = [
   'vendor/phaser.min.js',
@@ -14,8 +25,18 @@ assets = [
 
 total = assets.length;
 
+ask = function() {
+  withGithub.classList.add('hidden');
+  withoutGithub.classList.add('hidden');
+
+  askGithub.classList.remove('hidden');
+  askGithub.focus();
+};
+
 done = function() {
   var body = document.body;
+
+  landing.classList.add('landing-ready');
 
   assets.forEach(function(asset, index) {
     var script;
@@ -31,11 +52,47 @@ done = function() {
   });
 };
 
-kickoff = function(pxhr) {
+error = function() {
+  askGithub.disabled = false;
+};
+
+grab = function(event) {
+  var xhr;
+
+  if (event.which !== 13) {
+    return;
+  }
+
+  askGithub.disabled = true;
+
+  xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('error', error);
+  xhr.addEventListener('load', parse.bind(this, xhr));
+
+  xhr.open('GET', 'https://api.github.com/users/' + askGithub.value.trim());
+  xhr.send();
+};
+
+kickoff = function() {
+  askGithub = document.querySelector('.landing-ask-github');
+  landing = document.querySelector('.landing');
+  meter = document.querySelector('.landing-progress-meter');
+  withGithub = document.querySelector('.landing-with-github');
+  withoutGithub = document.querySelector('.landing-without-github');
+
+  askGithub.addEventListener('keyup', grab);
+  withGithub.addEventListener('click', ask);
+  withoutGithub.addEventListener('click', start);
+
+  load();
+};
+
+load = function(pxhr) {
   var asset = assets[index],
       xhr = new XMLHttpRequest();
 
-  if ('response' in pxhr) {
+  if (pxhr && 'response' in pxhr) {
     data[index - 1] = pxhr.response;
   }
 
@@ -46,16 +103,42 @@ kickoff = function(pxhr) {
   index++;
 
   xhr.addEventListener('progress', progress);
-  xhr.addEventListener('load', kickoff.bind(this, xhr));
+  xhr.addEventListener('load', load.bind(this, xhr));
 
   xhr.open('GET', asset);
   xhr.send();
 };
 
-progress = function(event) {
-  var percent = ((event.loaded / event.total) * index) / total;
+parse = function(xhr) {
+  var data;
 
-  console.log('kickoff::progress', percent);
+  try {
+    data = JSON.parse(xhr.response);
+  } catch (error) {
+    error(error);
+  }
+
+  start(data);
+};
+
+progress = function(event) {
+  var ratio;
+
+  if (!event.total) {
+    return;
+  }
+
+  ratio = ((event.loaded / event.total) * index) / total;
+  meter.style.right = ((1 - ratio) * 100).toFixed(5) + '%';
+};
+
+start = function(data) {
+  window.githubUserData = data || null;
+
+  withGithub.disabled = true;
+  withoutGithub.disabled = true;
+
+  landing.classList.add('hidden');
 };
 
 window.addEventListener('load', kickoff);

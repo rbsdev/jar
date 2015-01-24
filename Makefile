@@ -35,7 +35,7 @@ install:
 	./node_modules/bower/bin/bower install
 
 run:
-	$(HTTP_SERVER) -p 9090
+	node server.js
 
 jshint:
 	$(JSHINT) $(DIR_APP_SCRIPT)*.js

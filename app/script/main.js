@@ -1,39 +1,33 @@
 var Movement = require('./movement.js');
 var Player = require('./player.js');
+var Scenario = require('./scenario.js');
 var Interface = require('./interface.js');
-var Spaceship;
 
-var game = new window.Phaser.Game(window.innerWidth, window.innerHeight, window.Phaser.AUTO, '', {
+var width = window.innerWidth;
+var height = window.innerHeight;
+
+var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   preload: function() {
+    game.load.image('sky', 'image/sky.png');
     game.load.image('max', 'image/max.png');
   },
 
   create: function() {
-    // set spaceship
-    Spaceship = require('./spaceship.js')(game);
-
-    // set movements
-    Movement.initialize(game, Spaceship);
-
-    // set player
+    Scenario.initialize(game, width, height);
+    Movement.initialize(game);
     Player.initialize(100,100,'Evandro');
-
-    // set interface
     Interface.initialize(game);
 
-    // render timer
     Interface.import({
       name: 'timer',
       module: require('./timer.js')
     }).render('timer', '00:00:00');
 
-    // render life
     Interface.import({
       name: 'life',
       module: require('./life.js')
     }).render('life', '100');
 
-    // render power
     Interface.import({
       name: 'power',
       module: require('./power.js')
@@ -41,6 +35,7 @@ var game = new window.Phaser.Game(window.innerWidth, window.innerHeight, window.
   },
 
   update: function() {
+    Scenario.walk();
     Movement.render();
   }
 });
