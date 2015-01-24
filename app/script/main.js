@@ -14,36 +14,45 @@ var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   },
 
   create: function() {
-    game.physics.startSystem(Phaser.Physics.P2JS);
-
-    //  Make things a bit more bouncey
-    game.physics.p2.defaultRestitution = 0.8;
-
-    //  Add a sprite
-    sprite = game.add.sprite(200, 200, 'max');
-
-    //  Enable if for physics. This creates a default rectangular body.
-    game.physics.p2.enable(sprite);
-
-    //  Modify a few body properties
-    sprite.body.setZeroDamping();
-    sprite.body.fixedRotation = true;
-
+    game.physics.startSystem(Phaser.Physics.ARCADE);
     cursors = game.input.keyboard.createCursorKeys();
 
-    // game.physics.startSystem(Phaser.Physics.ARCATE);
-    // Player.initialize(game);
+    sprite = game.add.sprite(200, 200, 'max');
+
+    game.physics.enable(sprite, Phaser.Physics.ARCADE);
+    
+    //  This gets it moving
+    sprite.body.velocity.setTo(0, 0);
+    
+    //  This makes the game world bounce-able
+    sprite.body.collideWorldBounds = true;
+    
+    //  This sets the image bounce energy for the horizontal 
+    //  and vertical vectors (as an x,y point). "1" is 100% energy return
+    sprite.body.bounce.setTo(0, 0);
   },
 
   update: function() {
-    sprite.body.setZeroVelocity();
-
-    if (cursors.up.isDown) {
-      sprite.body.moveUp(400);
-    } else if (cursors.down.isDown) {
-      sprite.body.moveDown(400);
+    if (cursors.up.isDown)
+    {
+        sprite.body.acceleration.y = -600;
     }
-
-    // Player.walk();
+    else if (cursors.down.isDown)
+    {
+        sprite.body.acceleration.y = 600;
+    }
+    // else if (cursors.left.isDown)
+    // {
+    //     sprite.body.acceleration.x = -500;
+    // }
+    // else if (cursors.right.isDown)
+    // {
+    //     sprite.body.acceleration.x = 500;
+    // }
+    else
+    {
+        sprite.frame = 4;
+        sprite.body.acceleration.setTo(0,0);
+    }
   }
 });
