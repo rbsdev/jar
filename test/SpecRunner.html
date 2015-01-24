@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Spec - Game</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <div id="container-test" style="display: none;"></div>
+    <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"</script>
+    <script src="../build/src/script/main.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script>
+      mocha.ui('bdd');
+      mocha.reporter('html');
+      var expect = chai.expect;
+    </script>
+    <script src="spec/spec.main.js"></script>
+    <script>
+      if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+      else { mocha.run(); }
+    </script>
+  </body>
+</html>

@@ -44,8 +44,11 @@ minify:
 	echo "minified!"
 
 tree:
-	mkdir -p build/ && mkdir -p build/script
+	mkdir -p build/ && mkdir -p build/script && mkdir -p build/image
 	cp $(DIR_APP)index.html $(DIR_BUILD)index.html
+
+test:
+	$(MOCHA) test/SpecRunner.html
 
 watch:
 	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js': 'make build'
