@@ -1,9 +1,6 @@
 {
-  "name": "verage",
-  "root": "./app",
+  "name": "ss15-verage",
+  "root": "./",
   "clean_urls": true,
-  "cache_control": {},
-  "routes": {
-    "**": "index.html"
-  }
+  "error_page": "error.html"
 }
