@@ -46,6 +46,7 @@ browserify:
 	echo "browserify was executed!"
 
 minify:
+	$(UGLIFY) $(DIR_BUILD_SCRIPT)kickoff.js -o $(DIR_BUILD_SCRIPT)kickoff.min.js
 	$(UGLIFY) $(DIR_BUILD_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.min.js
 	echo "minified!"
 
