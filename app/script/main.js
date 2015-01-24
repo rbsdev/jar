@@ -25,12 +25,6 @@ window.main = function() {
       game.load.image('layer12', 'image/layer12.png');
       game.load.image('spaceship', 'image/spaceship.png');
 
-      /*global user:false */
-      var userAvatarUrl = user && user.avatar_url ? user.avatar_url : 'image/max.png';
-
-      game.load.crossOrigin = 'anonymous';
-      game.load.image('sky', 'image/sky.png');
-      game.load.image('max', userAvatarUrl);
       game.load.image('meteor', 'image/giba.png');
     },
 
