@@ -13,6 +13,6 @@ var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   },
 
   update: function() {
-    Player.initialize();
+    Player.walk();
   }
 });
