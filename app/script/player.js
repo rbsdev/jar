@@ -1,4 +1,4 @@
-var player = function(life, power) {
+var Player = function(life, power) {
   // set player attrs and apply attrs
   this.setAttr('attrs', {
     life  : life,
@@ -7,7 +7,7 @@ var player = function(life, power) {
   }).resetPlayer();
 };
 
-player.prototype = {
+Player.prototype = {
   life: function() {
     return this.life;
   },
@@ -43,4 +43,4 @@ player.prototype = {
   }
 };
 
-module.exports = player;
+module.exports = Player;
