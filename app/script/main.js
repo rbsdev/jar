@@ -2,6 +2,7 @@ var Movement = require('./movement.js');
 var Player = require('./player.js');
 var Scenario = require('./scenario.js');
 var Interface = require('./interface.js');
+
 var width = window.innerWidth;
 var height = window.innerHeight;
 
