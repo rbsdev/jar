@@ -8,5 +8,17 @@ MOCHA=$(NODE_MODULES)mocha-phantomjs/bin/mocha-phantomjs
 
 DIR_APP=app
 
+deploy:
+	divshot push $(DEPLOY_ENVIRONMENT)
+
+deploy_dev:
+	$(MAKE) deploy DEPLOY_ENVIRONMENT='development'
+
+deploy_stg:
+	$(MAKE) deploy DEPLOY_ENVIRONMENT='staging'
+
+deploy_prd:
+	$(MAKE) deploy DEPLOY_ENVIRONMENT='production'
+
 run:
 	$(HTTP_SERVER)
