@@ -41,6 +41,7 @@ jshint:
 
 browserify:
 	echo $(DIR_BUILD_SCRIPT)
+	$(BROWSERIFY) $(DIR_APP_SCRIPT)kickoff.js -o $(DIR_BUILD_SCRIPT)kickoff.js
 	$(BROWSERIFY) $(DIR_APP_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.js
 	echo "browserify was executed!"
 
