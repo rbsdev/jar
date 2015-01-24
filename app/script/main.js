@@ -1,7 +1,10 @@
 var Player = require('./player.js');
 var Phaser = window.Phaser;
 
-var game = new window.Phaser.Game(window.innerWidth, window.innerHeight, window.Phaser.AUTO, '', {
+var width = window.innerWidth;
+var height = window.innerHeight;
+
+var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   preload: function() {
     game.load.spritesheet('max', 'image/dude.png', 32, 48);
   },
