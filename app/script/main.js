@@ -1,14 +1,17 @@
-//var preload = require('./preload.js');
-//var create = require('./create.js');
-var update = require('./update.js');
+var Player = require('./player.js');
+var Phaser = window.Phaser;
 
 var game = new window.Phaser.Game(window.innerWidth, window.innerHeight, window.Phaser.AUTO, '', {
   preload: function() {
-    game.load.image('max', 'image/max.png');
+    game.load.spritesheet('max', 'image/dude.png', 32, 48);
   },
 
   create: function() {
-    game.add.sprite(0, 0, 'max');
+    game.physics.startSystem(Phaser.Physics.ARCATE);
+    Player.initialize(game);
   },
-  update: update
+
+  update: function() {
+    Player.walk();
+  }
 });
