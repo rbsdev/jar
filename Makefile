@@ -6,7 +6,15 @@ UGLIFY=$(NODE_MODULES)uglify-js/bin/uglifyjs
 JSHINT=$(NODE_MODULES)jshint/bin/jshint
 MOCHA=$(NODE_MODULES)mocha-phantomjs/bin/mocha-phantomjs
 
-DIR_APP=app
+DIR_APP=app/
+DIR_APP_SCRIPT=$(DIR_APP)script/
 
 run:
 	$(HTTP_SERVER)
+
+jshint:
+	$(JSHINT) $(DIR_APP_SCRIPT)*.js
+	echo "jshint was execute!"
+
+browserify:
+	$(BROWSERIFY) $(DIR_APP_SCRIPT)main.js -o $(DIR_DIST_SCRIPT)main.js
