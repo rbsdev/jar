@@ -5,6 +5,7 @@ VIGILIA=$(NODE_MODULES)vigilia/bin/vigilia
 UGLIFY=$(NODE_MODULES)uglify-js/bin/uglifyjs
 JSHINT=$(NODE_MODULES)jshint/bin/jshint
 MOCHA=$(NODE_MODULES)mocha-phantomjs/bin/mocha-phantomjs
+IMAGEMIN=$(NODE_MODULES)imagemin/cli.js
 
 DIR_APP=app/
 DIR_APP_SCRIPT=$(DIR_APP)script/
@@ -30,39 +31,50 @@ deploy_prd:
 	$(MAKE) deploy DEPLOY_ENVIRONMENT='production'
 
 install:
+	printf 'installing dependencies... '
 	npm i -g divshot-cli
 	npm install
-	./node_modules/bower/bin/bower install
+	node_modules/bower/bin/bower install
+	echo "\x1b[32mDONE!\x1b[0m"
 
 run:
 	node server.js
 
 jshint:
+	printf 'jshinting scripts... '
 	$(JSHINT) $(DIR_APP_SCRIPT)*.js
-	echo "jshint was executed!"
+	echo "    \x1b[32mDONE!\x1b[0m"
 
 browserify:
-	echo $(DIR_BUILD_SCRIPT)
+	printf 'browserifying scripts... '
 	$(BROWSERIFY) $(DIR_APP_SCRIPT)kickoff.js -o $(DIR_BUILD_SCRIPT)kickoff.js
 	$(BROWSERIFY) $(DIR_APP_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.js
-	echo "browserify was executed!"
+	echo "\x1b[32mDONE!\x1b[0m"
 
 minify:
+	printf 'uglifying scripts... '
 	$(UGLIFY) $(DIR_BUILD_SCRIPT)kickoff.js -o $(DIR_BUILD_SCRIPT)kickoff.min.js
 	$(UGLIFY) $(DIR_BUILD_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.min.js
-	echo "minified!"
+	echo "    \x1b[32mDONE!\x1b[0m"
+
+imgmin:
+	printf 'compressing images... '
+	$(IMAGEMIN) $(DIR_APP_IMAGE)* $(DIR_BUILD_IMAGE)
+	echo "   \x1b[32mDONE!\x1b[0m"
 
 tree:
+	printf 'genrating tree... '
 	mkdir -p $(DIR_BUILD_IMAGE)
 	mkdir -p $(DIR_BUILD_VENDOR)
 	cp $(DIR_APP)index.html $(DIR_BUILD)index.html
 	cp $(DIR_APP_IMAGE)*.png $(DIR_BUILD_IMAGE)
 	cp $(DIR_APP_VENDOR)* $(DIR_BUILD_VENDOR)
+	echo "       \x1b[32mDONE!\x1b[0m"
 
 test_js:
 	$(MOCHA) test/SpecRunner.html
 
-build: jshint tree browserify minify
+build: jshint tree browserify minify imgmin
 
 watch:
 	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js':'make build' '$(DIR_APP_SCRIPT)interface/*.js':'make build' '$(DIR_APP)*.html':'make tree'

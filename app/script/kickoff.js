@@ -21,6 +21,7 @@ assets = [
   'vendor/phaser.min.js',
   'script/main.js',
   'image/spaceship.png',
+  'script/main.min.js',
   'image/layer01.png',
   'image/layer02.png',
   'image/layer03.png',
@@ -32,7 +33,8 @@ assets = [
   'image/layer09.png',
   'image/layer10.png',
   'image/layer11.png',
-  'image/layer12.png'
+  'image/layer12.png',
+  'image/nave.png'
 ];
 
 total = assets.length;
@@ -145,12 +147,12 @@ progress = function(event) {
 };
 
 start = function(data) {
-  window.githubUserData = data || null;
-
   withGithub.disabled = true;
   withoutGithub.disabled = true;
 
   landing.classList.add('hidden');
+
+  window.main(data);
 };
 
 window.addEventListener('load', kickoff);
