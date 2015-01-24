@@ -3,6 +3,7 @@ var Scenario = require('./scenario.js');
 var Player = require('./player.js');
 var Interface = require('./interface.js');
 var Spaceship = require('./spaceship.js');
+var MeteorGroup = require('./meteor-group.js');
 
 var width = window.innerWidth;
 var height = window.innerHeight > 1440 ? 1440 : window.innerHeight;
@@ -23,6 +24,13 @@ window.main = function() {
       game.load.image('layer11', 'image/layer11.png');
       game.load.image('layer12', 'image/layer12.png');
       game.load.image('spaceship', 'image/spaceship.png');
+
+      var userAvatarUrl = user && user.avatar_url ? user.avatar_url : 'image/max.png';
+
+      game.load.crossOrigin = 'anonymous';
+      game.load.image('sky', 'image/sky.png');
+      game.load.image('max', userAvatarUrl);
+      game.load.image('meteor', 'image/giba.png');
     },
 
     create: function() {
@@ -45,6 +53,9 @@ window.main = function() {
         name: 'power',
         module: require('./power.js')
       }).render('power', '100');
+
+      var meteorGroup = new MeteorGroup(game, 10);
+      meteorGroup.create();
     },
 
     update: function() {
