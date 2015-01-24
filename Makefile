@@ -7,9 +7,11 @@ JSHINT=$(NODE_MODULES)jshint/bin/jshint
 MOCHA=$(NODE_MODULES)mocha-phantomjs/bin/mocha-phantomjs
 
 DIR_APP=app/
-DIR_APP_SCRIPT=$(DIR_APP)script/
+DIR_APP_SCRIPT=$(DIR_APP)src/script/
 DIR_BUILD=build/
 DIR_BUILD_SCRIPT=$(DIR_BUILD)
+
+.SILENT:
 
 deploy:
 	divshot push $(DEPLOY_ENVIRONMENT)
@@ -47,11 +49,12 @@ tree:
 	mkdir -p build/ && mkdir -p build/script && mkdir -p build/image
 	cp $(DIR_APP)index.html $(DIR_BUILD)index.html
 
-test:
+test_js:
 	$(MOCHA) test/SpecRunner.html
+
+
+build: jshint tree browserify minify
 
 watch:
 	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js': 'make build'
-
-build: jshint tree browserify minify
 
