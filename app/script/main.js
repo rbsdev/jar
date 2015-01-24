@@ -19,7 +19,6 @@ window.main = function(user) {
 
     create: function() {
       var userName = user && user.name ? user.name : 'Max';
-      
       Scenario.initialize(game, width, height);
       var spaceship = Spaceship.get(game);
       Movement.initialize(game, spaceship);
