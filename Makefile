@@ -47,5 +47,8 @@ tree:
 	mkdir -p build/ && mkdir -p build/script
 	cp $(DIR_APP)index.html $(DIR_BUILD)index.html
 
+watch:
+	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js': 'make build'
+
 build: jshint tree browserify minify
 
