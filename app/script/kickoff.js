@@ -135,12 +135,12 @@ progress = function(event) {
 };
 
 start = function(data) {
-  window.githubUserData = data || null;
-
   withGithub.disabled = true;
   withoutGithub.disabled = true;
 
   landing.classList.add('hidden');
+
+  window.main(data);
 };
 
 window.addEventListener('load', kickoff);
