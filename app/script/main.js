@@ -2,8 +2,6 @@ var Movement = require('./movement.js');
 var Player = require('./player.js');
 var Scenario = require('./scenario.js');
 var Interface = require('./interface.js');
-var Spaceship = require('./spaceship.js');
-
 var width = window.innerWidth;
 var height = window.innerHeight;
 
@@ -15,8 +13,7 @@ var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
 
   create: function() {
     Scenario.initialize(game, width, height);
-    var spaceship = Spaceship(game);
-    Movement.initialize(game, spaceship);
+    Movement.initialize(game);
     Player.initialize(100,100,'Evandro');
     Interface.initialize(game);
 

@@ -1,6 +1,13 @@
+var spaceship = function(game) {
+  this.game = game;
+  this.element = this.game.add.sprite(200, 200, 'max');
+
+  return this.element;
+};
+
 var Movement = {
-  initialize: function(game, element) {
-    this.element = element;
+  initialize: function(game) {
+    this.element = spaceship(game);
     this.game = game;
 
     this.game.physics.startSystem(window.Phaser.Physics.ARCADE);
