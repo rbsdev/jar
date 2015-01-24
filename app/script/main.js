@@ -17,6 +17,7 @@ var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   },
 
   update: function() {
+    Scenario.walk();
     Controller.walk();
   }
 });
