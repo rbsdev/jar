@@ -19,10 +19,20 @@ var assets,
 
 assets = [
   'vendor/phaser.min.js',
-  'script/main.min.js',
-  'image/dude.png',
-  'image/max.png',
-  'image/sky.png'
+  'script/main.js',
+  'image/spaceship.png',
+  'image/layer01.png',
+  'image/layer02.png',
+  'image/layer03.png',
+  'image/layer04.png',
+  'image/layer05.png',
+  'image/layer06.png',
+  'image/layer07.png',
+  'image/layer08.png',
+  'image/layer09.png',
+  'image/layer10.png',
+  'image/layer11.png',
+  'image/layer12.png'
 ];
 
 total = assets.length;
