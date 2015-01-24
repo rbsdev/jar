@@ -14,6 +14,16 @@
         margin: 0;
       }
 
+      .landing-ask-github, .landing-button {
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(204, 204, 204);
+        display: block;
+        margin: 10px 0;
+        outline: 0;
+        padding: 10px;
+        width: 100%;
+      }
+
       .landing {
         position: fixed;
         top: 0;
@@ -27,6 +37,15 @@
         padding: 0;
         width: auto;
         height: auto;
+      }
+
+      .landing:not(.landing-ready) .landing-prompt {
+        display: none;
+        opacity: 0;
+      }
+
+      .landing-button {
+        cursor: pointer;
       }
 
       .landing-core {
@@ -64,14 +83,15 @@
 
       .landing-progress {
         position: absolute;
-        top: 40%;
+        top: 50%;
         right: 10px;
-        bottom: 20%;
         left: 10px;
         background-color: rgb(204, 204, 204);
         border: 1px solid rgb(204, 204, 204);
+        transform: translateY(-50%);
+        transition: opacity 0.2s;
         width: auto;
-        height: auto;
+        height: 10px;
       }
 
       .landing-progress-meter {
@@ -81,8 +101,30 @@
         bottom: 0;
         left: 0;
         background-color: rgb(255, 255, 255);
+        transition: right 0.1s;
         width: auto;
         height: auto;
+      }
+
+      .landing-prompt {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        left: 10px;
+        display: inline-block;
+        opacity: 1;
+        transform: translateY(-50%);
+        transition: opacity 0.2s;
+        width: auto;
+        height: auto;
+      }
+
+      .landing-prompt .landing-text {
+        text-align: center;
+      }
+
+      .landing-ready .landing-progress {
+        opacity: 0;
       }
 
       .landing-text {
@@ -91,6 +133,16 @@
 
       .landing-title {
         margin: 0;
+      }
+
+      .landing-with-github {
+      }
+
+      .landing-without-github {
+      }
+
+      .hidden {
+        display: none;
       }
     </style>
   </head>
@@ -104,6 +156,13 @@
 
         <div class="landing-progress">
           <div class="landing-progress-meter"></div>
+        </div>
+
+        <div class="landing-prompt">
+          <p class="landing-text">Start game</p>
+          <button class="landing-button landing-with-github">with Github</button>
+          <input type="text" placeholder="username" class="landing-ask-github hidden">
+          <button class="landing-button landing-without-github">without Github</button>
         </div>
 
         <footer class="landing-footer">
