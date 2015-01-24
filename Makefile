@@ -12,6 +12,8 @@ DIR_BUILD=build/
 DIR_BUILD_SCRIPT=$(DIR_BUILD)script/
 DIR_BUILD_IMAGE=$(DIR_BUILD)image/
 DIR_APP_IMAGE=$(DIR_APP)image/
+DIR_APP_VENDOR=$(DIR_APP)vendor/
+DIR_BUILD_VENDOR=$(DIR_BUILD)vendor/
 
 .SILENT:
 
@@ -51,15 +53,16 @@ minify:
 	echo "minified!"
 
 tree:
-	mkdir -p build/ && mkdir -p build/script && mkdir -p build/image
+	mkdir -p $(DIR_BUILD_IMAGE)
+	mkdir -p $(DIR_BUILD_VENDOR)
 	cp $(DIR_APP)index.html $(DIR_BUILD)index.html
 	cp $(DIR_APP_IMAGE)*.png $(DIR_BUILD_IMAGE)
+	cp $(DIR_APP_VENDOR)* $(DIR_BUILD_VENDOR)
 
 test_js:
 	$(MOCHA) test/SpecRunner.html
 
 build: jshint tree browserify minify
 
-watch:
+watch: build
 	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js':'make build'
-

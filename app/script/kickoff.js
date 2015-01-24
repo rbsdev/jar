@@ -6,6 +6,7 @@ var assets,
     total;
 
 assets = [
+  'vendor/phaser.min.js',
   'script/main.min.js',
   'image/max.png'
 ];
@@ -39,4 +40,4 @@ progress = function(event) {
   console.log('kickoff::progress', percent);
 };
 
-document.addEventListener('DOMContentLoaded', kickoff);
+window.addEventListener('load', kickoff);
