@@ -28,8 +28,9 @@ var Timer = {
   },
 
   render: function() {
-    var seconds = +this.game.time.totalElapsedSeconds() >> 0,
-        minutes = seconds / 60 >> 0;
+    var time = this.game.time.totalElapsedSeconds(),
+        minutes = this.pad(time / 60 >> 0),
+        seconds = this.pad(time % 60 >> 0);
 
     this.text.text = this.pad(minutes) + ':' + this.pad(seconds);
 
