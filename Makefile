@@ -24,6 +24,7 @@ deploy_prd:
 	$(MAKE) deploy DEPLOY_ENVIRONMENT='production'
 
 install:
+	npm i -g divshot-cli
 	npm install
 	bower install
 
