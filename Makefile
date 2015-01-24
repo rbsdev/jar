@@ -20,5 +20,9 @@ deploy_stg:
 deploy_prd:
 	$(MAKE) deploy DEPLOY_ENVIRONMENT='production'
 
+install:
+	npm install
+	bower install
+
 run:
 	$(HTTP_SERVER)
