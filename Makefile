@@ -11,6 +11,22 @@ DIR_APP_SCRIPT=$(DIR_APP)script/
 DIR_BUILD=build/
 DIR_BUILD_SCRIPT=$(DIR_BUILD)
 
+deploy:
+	divshot push $(DEPLOY_ENVIRONMENT)
+
+deploy_dev:
+	$(MAKE) deploy DEPLOY_ENVIRONMENT='development'
+
+deploy_stg:
+	$(MAKE) deploy DEPLOY_ENVIRONMENT='staging'
+
+deploy_prd:
+	$(MAKE) deploy DEPLOY_ENVIRONMENT='production'
+
+install:
+	npm install
+	bower install
+
 run:
 	$(HTTP_SERVER)
 
