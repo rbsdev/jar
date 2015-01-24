@@ -33,7 +33,7 @@ window.main = function() {
       Interface.import({
         name: 'timer',
         module: require('./timer.js')
-      }).render('timer', '00:00:00');
+      });
 
       Interface.import({
         name: 'life',
@@ -49,6 +49,7 @@ window.main = function() {
     update: function() {
       Scenario.render();
       Spaceship.render();
+      Interface.render('timer');
     }
   });
 };

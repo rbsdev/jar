@@ -1,21 +1,38 @@
 var Timer = {
+  game: null,
+  text: null,
+
   initialize: function(game) {
-    console.log(game);
+    var size = game.world.height / 16 >> 0;
+
+    this.game = game;
+
+    this.text = this.game.add.text(game.world.width - (size >> 2), 0, '00:00', {
+      fill: '#FFFFFF',
+      font: size + 'px Futura'
+    });
+
+    this.text.anchor.set(1, 0);
+
     return this;
   },
 
-  render: function(value) {
-    console.log(value);
-    return this;
+  pad: function(number) {
+    var string = number.toString();
+
+    if (string.length >= 2) {
+      return string;
+    }
+
+    return '0' + string;
   },
 
-  update: function(value) {
-    console.log(value);
-    return this;
-  },
+  render: function() {
+    var seconds = +this.game.time.totalElapsedSeconds() >> 0,
+        minutes = seconds / 60 >> 0;
 
-  remove: function(value) {
-    console.log(value);
+    this.text.text = this.pad(minutes) + ':' + this.pad(seconds);
+
     return this;
   }
 };
