@@ -1,30 +1,44 @@
-var Player = {
-  initialize: function(game) {
-    game.physics.startSystem(window.Phaser.Physics.ARCADE);
+var Player = function(life, power) {
+  this.setAttr('attrs', {
+    life  : life,
+    power : power,
+    time  : 0
+  }).resetPlayer();
+};
 
-    this.cursors = game.input.keyboard.createCursorKeys();
-    this.player = game.add.sprite(200, 200, 'max');
-
-    game.physics.enable(this.player, window.Phaser.Physics.ARCADE);
-
-    this.player.body.velocity.setTo(0, 0);
-    this.player.body.collideWorldBounds = true;
-    this.player.body.bounce.setTo(0, 0);
+Player.prototype = {
+  life: function() {
+    return this.life;
   },
 
-  walk: function() {
-    if (this.cursors.up.isDown) {
-      this.player.body.acceleration.y = -600;
-      return;
-    } 
+  time: function() {
+    return this.time;
+  },
 
-    if (this.cursors.down.isDown) {
-      this.player.body.acceleration.y = 600;
-      return;
-    }
+  power: function() {
+    return this.life;
+  },
 
-    this.player.frame = 4;
-    this.player.body.acceleration.setTo(0,0);
+  increase: function(attr, value) {
+    this[attr] = (this[attr] + value);
+    return this[attr];
+  },
+
+  decrease: function(attr, value) {
+    this[attr] = (this[attr] - value);
+    return this[attr];
+  },
+
+  setAttr: function(attr, value) {
+    this[attr] = value;
+    return this;
+  },
+
+  resetPlayer: function() {
+    this.setAttr('life', this.attrs.life);
+    this.setAttr('power', this.attrs.life);
+    this.setAttr('time', this.attrs.time);
+    return this;
   }
 };
 
