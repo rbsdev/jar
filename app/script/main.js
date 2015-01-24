@@ -1,35 +1,35 @@
 var Movement = require('./movement.js');
 var Player = require('./player.js');
 var Interface = require('./interface/index.js');
+var Controller = require('./controller.js');
+var Scenario = require('./scenario.js');
 
-var game = new window.Phaser.Game(window.innerWidth, window.innerHeight, window.Phaser.AUTO, '', {
+var width = window.innerWidth;
+var height = window.innerHeight;
+
+var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   preload: function() {
+    game.load.image('sky', 'image/sky.png');
     game.load.image('max', 'image/max.png');
   },
 
   create: function() {
-    // set movements
+    Scenario.initialize(game, width, height);
+    Controller.initialize(game);
     Movement.initialize(game);
-
-    // set player
     Player.initialize(100,100,'Evandro');
-
-    // set interface
     Interface.initialize(game);
 
-    // render timer
     Interface.import({
       name: 'timer',
       module: require('./interface/timer.js')
     }).render('timer', '00:00:00');
 
-    // render life
     Interface.import({
       name: 'life',
       module: require('./interface/life.js')
     }).render('life', '100');
 
-    // render power
     Interface.import({
       name: 'power',
       module: require('./interface/power.js')
@@ -38,5 +38,7 @@ var game = new window.Phaser.Game(window.innerWidth, window.innerHeight, window.
 
   update: function() {
     Movement.walk();
+    Scenario.walk();
+    Controller.walk();
   }
 });

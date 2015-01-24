@@ -16,7 +16,6 @@ total = assets.length;
 
 done = function() {
   var body = document.body;
-
   assets.forEach(function(asset, index) {
     var script;
 
@@ -40,12 +39,13 @@ kickoff = function(pxhr) {
   }
 
   if (index === total) {
+    console.log('done?');
     return done();
   }
 
   index++;
 
-  xhr.addEventListener('progress', progress);
+  // xhr.addEventListener('progress', progress);
   xhr.addEventListener('load', kickoff.bind(this, xhr));
 
   xhr.open('GET', asset);
@@ -53,9 +53,9 @@ kickoff = function(pxhr) {
 };
 
 progress = function(event) {
+  if (event.total === 0) { return; }
   var percent = ((event.loaded / event.total) * index) / total;
-
-  console.log('kickoff::progress', percent);
+  console.log(percent);
 };
 
 window.addEventListener('load', kickoff);
