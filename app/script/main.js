@@ -1,4 +1,4 @@
-var Controller = require('./Controller.js');
+var Controller = require('./controller.js');
 
 var width = window.innerWidth;
 var height = window.innerHeight;
@@ -13,6 +13,6 @@ var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   },
 
   update: function() {
-    Controller.initialize(game);
+    Controller.walk();
   }
 });
