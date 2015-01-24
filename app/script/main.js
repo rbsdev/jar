@@ -4,8 +4,9 @@ var Scenario = require('./scenario.js');
 var Interface = require('./interface.js');
 
 var width = window.innerWidth;
-var height = window.innerHeight;
+var height = window.innerHeight > 1440 ? 1440 : window.innerHeight;
 
+window.main = function() {
 var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   preload: function() {
     game.load.image('layer01', 'image/layer01.png');
@@ -50,3 +51,4 @@ var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
     Spaceship.render();
   }
 });
+};
