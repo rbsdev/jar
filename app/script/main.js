@@ -1,14 +1,31 @@
 //var preload = require('./preload.js');
 //var create = require('./create.js');
-var update = require('./update.js');
 
-var game = new window.Phaser.Game(800, 600, window.Phaser.AUTO, '', {
+var Phaser = window.Phaser;
+var cursors;
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
   preload: function() {
-    game.load.image('max', 'image/max.png');
+    game.load.spritesheet('max', 'image/dude.png', 32, 48);
   },
 
   create: function() {
-    game.add.sprite(0, 0, 'max');
+    game.physics.startSystem(Phaser.Physics.ARCATE);
+
+    var player = game.add.sprite(32, game.world.height - 150, 'max');
+    game.physics.arcade.enable(player);
+    player.body.bounce.y = 0.2;
+    player.body.gravity.y = 300;
+    player.body.collideWorldBounds = true;
+
+    player.animations.add('left', [0, 1, 2, 3], 10, true);
+    player.animations.add('right', [5, 6, 7, 8], 10, true);
+
+   cursors = game.input.keyboard.createCursorKeys();
   },
-  update: update
+
+  update: function() {
+    //if (cursors.left.isDown) {
+      //player.body.velocity.x
+    //}
+  }
 });
