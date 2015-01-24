@@ -18,7 +18,7 @@ MeteorGroup.prototype = {
       this.meteors.create(i*48, i*50, 'meteor').body.moves = true;
     }
 
-    var tween = this.game.add.tween(this.meteors).to( { x: 200 }, 2000, 
+    var tween = this.game.add.tween(this.meteors).to( { x: 400 }, 2000, 
                                 window.Phaser.Easing.Linear.None, true, 0, 1000, true);
 
     tween.onLoop.add(this.descend, this);
