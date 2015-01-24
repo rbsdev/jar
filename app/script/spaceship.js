@@ -9,6 +9,7 @@ var Spaceship = {
     this.x = 10;
     this.game.physics.startSystem(window.Phaser.Physics.ARCADE);
     this.game.physics.enable(this.element, window.Phaser.Physics.ARCADE);
+
     return this;
   },
 
@@ -26,6 +27,7 @@ var Spaceship = {
     
     this.game.input.activePointer.x = this.x;
     this.game.physics.arcade.moveToPointer(this.element, 1, this.game.input.activePointer, 300);
+
     return this;
   }
 };
