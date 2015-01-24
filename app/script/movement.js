@@ -1,9 +1,4 @@
-var spaceship = function(game) {
-  this.game = game;
-  this.element = this.game.add.sprite(200, 200, 'max');
-
-  return this.element;
-};
+var spaceship = require('./spaceship.js');
 
 var Movement = {
   initialize: function(game) {
