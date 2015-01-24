@@ -6,7 +6,8 @@ var height = window.innerHeight;
 
 var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
   preload: function() {
-    game.load.spritesheet('max', 'image/dude.png', 32, 48);
+    game.load.image('max', 'image/max.png');
+    // game.load.spritesheet('max', 'image/max.png', 48, 48);
   },
 
   create: function() {
