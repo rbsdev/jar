@@ -1,33 +1,16 @@
 var Movement = {
-  initialize: function(game) {
-    game.physics.startSystem(window.Phaser.Physics.ARCADE);
+  initialize: function(game, element) {
+    this.element = element;
+    this.game = game;
 
-    this.cursors = game.input.keyboard.createCursorKeys();
-    this.movement = game.add.sprite(200, 200, 'max');
-
-    game.physics.enable(this.movement, window.Phaser.Physics.ARCADE);
-
-    this.movement.body.velocity.setTo(0, 0);
-    this.movement.body.collideWorldBounds = true;
-    this.movement.body.bounce.setTo(0, 0);
-
+    this.game.physics.startSystem(window.Phaser.Physics.ARCADE);
+    this.game.physics.enable(this.element, window.Phaser.Physics.ARCADE);
     return this;
   },
 
-  walk: function() {
-    if (this.cursors.up.isDown) {
-      this.movement.body.acceleration.y = -600;
-      return;
-    } 
-
-    if (this.cursors.down.isDown) {
-      this.movement.body.acceleration.y = 600;
-      return;
-    }
-
-    this.movement.frame = 4;
-    this.movement.body.acceleration.setTo(0,0);
-
+  render: function() {
+    this.game.input.activePointer.x = false;
+    this.game.physics.arcade.moveToPointer(this.element, 50, this.game.input.activePointer, 400);
     return this;
   }
 };

@@ -1,8 +1,8 @@
 var Movement = require('./movement.js');
 var Player = require('./player.js');
-var Interface = require('./interface/index.js');
-var Controller = require('./controller.js');
 var Scenario = require('./scenario.js');
+var Interface = require('./interface.js');
+var Spaceship = require('./spaceship.js');
 
 var width = window.innerWidth;
 var height = window.innerHeight;
@@ -15,30 +15,29 @@ var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
 
   create: function() {
     Scenario.initialize(game, width, height);
-    Controller.initialize(game);
-    Movement.initialize(game);
+    var spaceship = Spaceship(game);
+    Movement.initialize(game, spaceship);
     Player.initialize(100,100,'Evandro');
     Interface.initialize(game);
 
     Interface.import({
       name: 'timer',
-      module: require('./interface/timer.js')
+      module: require('./timer.js')
     }).render('timer', '00:00:00');
 
     Interface.import({
       name: 'life',
-      module: require('./interface/life.js')
+      module: require('./life.js')
     }).render('life', '100');
 
     Interface.import({
       name: 'power',
-      module: require('./interface/power.js')
+      module: require('./power.js')
     }).render('power', '100');
   },
 
   update: function() {
-    Movement.walk();
     Scenario.walk();
-    Controller.walk();
+    Movement.render();
   }
 });
