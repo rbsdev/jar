@@ -14,8 +14,11 @@ var game = new window.Phaser.Game(window.innerWidth, window.innerHeight, window.
     // set player
     Player.initialize(100,100,'Evandro');
 
+    // set interface
+    Interface.initialize(game);
+
     // render timer
-    Interface.initialize(game).import({
+    Interface.import({
       name: 'timer',
       module: require('./interface/timer.js')
     }).render('timer', '00:00:00');
