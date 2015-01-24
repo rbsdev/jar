@@ -59,5 +59,5 @@ test_js:
 build: jshint tree browserify minify
 
 watch:
-	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js': 'make build'
+	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js':'make build'
 
