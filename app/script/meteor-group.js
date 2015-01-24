@@ -22,6 +22,8 @@ MeteorGroup.prototype = {
                                 window.Phaser.Easing.Linear.None, true, 0, 1000, true);
 
     tween.onLoop.add(this.descend, this);
+
+    return this.meteors;
   }
 };
 
