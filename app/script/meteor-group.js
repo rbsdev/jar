@@ -55,9 +55,26 @@ MeteorGroup.prototype = {
     this.collection.push(meteor);
   },
 
+  remove: function (meteor) {
+    var index = this.collection.indexOf(meteor);
+    this.collection.splice(index, 1);
+  },
+
+  afterUpdate: function (meteor) {
+    var xLimit = 0 - meteor.sprite.width;
+
+    if (meteor.sprite.position.x < xLimit) {
+      meteor.sprite.kill();
+      this.remove(meteor);
+    }
+  },
+
   update: function () {
+    var that = this;
+
     this.collection.forEach(function (meteor) {
       meteor.update();
+      that.afterUpdate(meteor);
     });
   }
 };
