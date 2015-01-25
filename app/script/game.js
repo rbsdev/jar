@@ -23,8 +23,8 @@ var Game = window.Game = {
 
   create: function() {
     Game.player = Player.initialize(100, 100, 'Evandro');
-    Game.scenario = Scenario.initialize(Game.phaser);
-    Game.elements = Elements.initialize(Game.phaser);
+    Game.scenario = Scenario.initialize(Game);
+    Game.elements = Elements.initialize(Game);
     Game.world = World.initialize(Game);
     Game.spaceship = Spaceship.initialize(Game);
 

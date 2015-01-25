@@ -1,6 +1,6 @@
 var Elements = {
-  initialize: function(phaser) {
-    this.phaser = phaser;
+  initialize: function(game) {
+    this.phaser = game.phaser;
     this.elements = {};
     return this;
   },
