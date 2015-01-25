@@ -56,6 +56,8 @@ var Game = window.Game = {
   },
 
   hit: function (spaceship, element) {
+    spaceship.animations.play('hit');
+
     if (element.key === 'meteor') {
       return Life.decrease(5);
     }

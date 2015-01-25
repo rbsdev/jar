@@ -24,7 +24,7 @@ var Spaceship = {
   setAnimations: function () {
     this.element.animations.add('normal', [0, 1], 4, true, true);
     this.element.animations.add('boost', [2, 3], 15, true, true);
-    this.element.animations.add('hit', [0, 4], 4, false, true);
+    this.element.animations.add('hit', [0, 4, 0, 4], 4, false, true);
     this.element.animations.add('low-fuel', [5, 6, 5, 6, 7], 10, true, true);
   },
 
@@ -39,6 +39,12 @@ var Spaceship = {
     this.fx.boost = boostFx;
 
     this.fx.engine.play('slow');
+  },
+
+  animate: function (animation) {
+    if (!this.element.animations._anims.hit.isPlaying) {
+      this.element.animations.play(animation);
+    }
   },
 
   playAudio: function () {
@@ -65,10 +71,10 @@ var Spaceship = {
       this.x += 5;
 
       this.boosting = true;
-      this.element.animations.play('boost');
+      this.animate('boost');
     } else {
       this.boosting = false;
-      this.element.animations.play('normal');
+      this.animate('normal');
 
       if (this.x <= 10) {
         this.x = 10;
