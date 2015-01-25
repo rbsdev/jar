@@ -77,5 +77,5 @@ test_js:
 
 build: tree script image
 
-watch:
+watch: tree script
 	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js':'make script' '$(DIR_APP)*.html':'make tree'

@@ -15,7 +15,8 @@ var ask,
     total;
 
 assets = [
-  'vendor/phaser.min.js',
+  'vendor/firebase-2.0.4.js',
+  'vendor/phaser-2.2.2.js',
   'script/game.js',
   'image/spaceship.png',
   'image/layer01.png',
