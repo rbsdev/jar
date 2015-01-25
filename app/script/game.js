@@ -7,7 +7,8 @@ var Life = require('./life.js');
 var Power = require('./power.js');
 
 var Game = window.Game = {
-  initialize: function(Phaser) {
+  initialize: function(Phaser, user) {
+    this.user = user;
     this.phaser = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '', {
       preload: this.preload,
       create: this.create,
@@ -26,7 +27,7 @@ var Game = window.Game = {
   },
 
   create: function() {
-    Game.player = Player.initialize(100, 100, 'Evandro');
+    Game.player = Player.initialize(Game, this.user);
     Game.scenario = Scenario.initialize(Game);
     Game.elements = Elements.initialize(Game);
     Game.world = World.initialize(Game);
@@ -62,7 +63,7 @@ var Game = window.Game = {
     spaceship.animations.play('hit');
 
     if (element.key === 'meteor') {
-      return Life.decrease(5);
+      return Life.decrease(0.5);
     }
   }
 };

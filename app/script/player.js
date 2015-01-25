@@ -1,11 +1,10 @@
 var Player = {
-  initialize: function(life, power, name) {
+  initialize: function(game, name) {
     this.setAttr('attrs', {
-      name: name,
-      life: life,
-      power: power,
-      time: 0
+      name: name
     }).resetPlayer();
+
+    this.game = game;
 
     return this;
   },
@@ -32,7 +31,7 @@ var Player = {
   },
 
   dead: function() {
-    console.log('Player is dead!');
+    this.game.phaser.paused = true;
   },
 
   decrease: function(attr, value) {
