@@ -26,7 +26,7 @@ var DB = {
       callback(users.reverse());
     };
 
-    this.users.on('value', getUsers);    
+    this.users.on('value', getUsers);
   }
 };
 
