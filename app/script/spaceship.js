@@ -21,7 +21,7 @@ var Spaceship = {
 
   setAnimations: function () {
     this.element.animations.add('normal', [0, 1], 4, true, true);
-    this.element.animations.add('boost', [2, 3], 4, true, true);
+    this.element.animations.add('boost', [2, 3], 15, true, true);
     this.element.animations.add('hit', [0, 4], 4, false, true);
     this.element.animations.add('low-fuel', [5, 6, 5, 6, 7], 10, true, true);
   },
