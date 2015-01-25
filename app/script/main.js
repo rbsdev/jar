@@ -9,6 +9,27 @@ var Collision = require('./collision.js');
 var width = window.innerWidth;
 var height = window.innerHeight > 1440 ? 1440 : window.innerHeight;
 
+var debounce = function (func, threshold, execAsap) {
+  var timeout;
+
+  return function debounced () {
+    var obj = this, args = arguments;
+
+    function delayed () {
+      if (!execAsap) { func.apply(obj, args); }
+      timeout = null; 
+    }
+
+    if (timeout) {
+      clearTimeout(timeout);
+    } else if (execAsap) {
+      func.apply(obj, args);
+    }
+
+    timeout = setTimeout(delayed, threshold || 100); 
+  }; 
+};
+
 window.main = function() {
   var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
     preload: function() {
@@ -54,7 +75,8 @@ window.main = function() {
       Spaceship.render();
       Interface.render('timer');
 
-      game.physics.arcade.collide(this.spaceship, this.meteors, this.collision.handler, null, this);
+      game.physics.arcade.collide(this.spaceship, this.meteors, debounce(this.collision.handler, 300),
+                                  null, this);
     }
   }, false, false);
 };
