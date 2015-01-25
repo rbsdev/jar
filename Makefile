@@ -58,6 +58,7 @@ image:
 
 tree:
 	printf 'genrating tree... '
+	mkdir -p $(DIR_BUILD)
 	mkdir -p $(DIR_BUILD_IMAGE)
 	mkdir -p $(DIR_BUILD_VENDOR)
 	mkdir -p $(DIR_BUILD_SCRIPT)
