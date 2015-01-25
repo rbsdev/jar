@@ -24,7 +24,8 @@ assets = [
   'image/layer01.png',
   'image/layer02.png',
   'image/layer03.png',
-  'image/nave.png'
+  'image/nave.png',
+  'image/meteor.png'
 ];
 
 total = assets.length;

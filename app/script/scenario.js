@@ -18,6 +18,8 @@ var Scenario = {
     this.layer3.tileScale.y = scaleY;
     this.layer2.tileScale.y = scaleY;
     this.layer1.tileScale.y = scaleY;
+
+    return this;
   },
 
   render: function() {

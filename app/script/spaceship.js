@@ -7,7 +7,7 @@ var Spaceship = {
     this.game.physics.startSystem(window.Phaser.Physics.ARCADE);
     this.game.physics.enable(this.element, window.Phaser.Physics.ARCADE);
 
-    return this.element;
+    return this;
   },
 
   render: function() {
