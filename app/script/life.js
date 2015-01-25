@@ -9,12 +9,12 @@ var Life = {
     return this;
   },
 
-  lose: function() {
+  decrease: function() {
     this.total--;
     return this;
   },
 
-  earn: function() {
+  increase: function() {
     this.total++;
     return this;
   }
