@@ -1,3 +1,5 @@
+var Player = require('./player.js');
+
 var Life = {
   total: 3,
 
@@ -11,6 +13,8 @@ var Life = {
 
   decrease: function() {
     this.total--;
+    if (this.total === 0) { Player.dead(); }
+
     return this;
   },
 

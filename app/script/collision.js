@@ -9,10 +9,13 @@ var Collision = {
   handler: function(spaceship, element) {
     var isEnemy = Collision.enemies.indexOf(element.key) !== -1;
 
-    if (isEnemy) {
-      console.log('collision!');
+    if (isEnemy) { 
       Life.decrease();
+      return;
     }
+
+    var isLife = element.key === 'life';
+    if (isLife) Life.increase();
   }
 };
 
