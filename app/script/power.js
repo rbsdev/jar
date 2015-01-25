@@ -1,6 +1,6 @@
 var Power = {
-  initialize: function(game) {
-    console.log(game);
+  initialize: function(phaser) {
+    console.log(phaser);
     return this;
   },
 

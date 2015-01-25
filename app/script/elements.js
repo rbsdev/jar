@@ -1,12 +1,12 @@
 var Elements = {
-  initialize: function(game) {
-    this.game     = game;
+  initialize: function(phaser) {
+    this.phaser = phaser;
     this.elements = {};
     return this;
   },
 
   import: function(element) {
-    this.elements[element.name] = element.module.initialize(this.game);
+    this.elements[element.name] = element.module.initialize(this.phaser);
     return this;
   },
 

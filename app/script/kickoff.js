@@ -19,12 +19,11 @@ var assets,
 
 assets = [
   'vendor/phaser.min.js',
-  'script/main.js',
+  'script/game.js',
   'image/spaceship.png',
   'image/layer01.png',
   'image/layer02.png',
   'image/layer03.png',
-  'image/nave.png',
   'image/meteor.png'
 ];
 
@@ -137,13 +136,12 @@ progress = function(event) {
   meter.style.right = ((1 - ratio) * 100).toFixed(5) + '%';
 };
 
-start = function(data) {
+start = function() {
   withGithub.disabled = true;
   withoutGithub.disabled = true;
 
   landing.classList.add('hidden');
-
-  window.main(data);
+  window.Game.initialize(window.Phaser);
 };
 
 window.addEventListener('load', kickoff);

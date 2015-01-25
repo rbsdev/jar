@@ -1,17 +1,17 @@
 var Spaceship = {
-  initialize: function(game) {
-    this.game = game;
-    this.element = this.game.add.sprite(170, 48, 'spaceship');
+  initialize: function(phaser) {
+    this.phaser = phaser;
+    this.element = phaser.add.sprite(170, 48, 'spaceship');
     this.element.anchor.setTo(0, 0.65);
     this.x = 10;
-    this.game.physics.startSystem(window.Phaser.Physics.ARCADE);
-    this.game.physics.enable(this.element, window.Phaser.Physics.ARCADE);
+    phaser.physics.startSystem(window.Phaser.Physics.ARCADE);
+    phaser.physics.enable(this.element, window.Phaser.Physics.ARCADE);
 
     return this;
   },
 
   render: function() {
-    if (this.game.input.keyboard.isDown(window.Phaser.Keyboard.SPACEBAR)) {
+    if (this.phaser.input.keyboard.isDown(window.Phaser.Keyboard.SPACEBAR)) {
       this.x += 2;
     } else {
       if (this.x <= 10) {
@@ -21,8 +21,8 @@ var Spaceship = {
       }
     }
     
-    this.game.input.activePointer.x = this.x;
-    this.game.physics.arcade.moveToPointer(this.element, 1, this.game.input.activePointer, 300);
+    this.phaser.input.activePointer.x = this.x;
+    this.phaser.physics.arcade.moveToPointer(this.element, 1, this.phaser.input.activePointer, 300);
 
     return this;
   }

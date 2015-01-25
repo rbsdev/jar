@@ -46,9 +46,9 @@ jshint:
 script: jshint
 	printf 'building scripts... '
 	$(BROWSERIFY) $(DIR_APP_SCRIPT)kickoff.js -o $(DIR_BUILD_SCRIPT)kickoff.js
-	$(BROWSERIFY) $(DIR_APP_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.js
+	$(BROWSERIFY) $(DIR_APP_SCRIPT)game.js -o $(DIR_BUILD_SCRIPT)game.js
 	$(UGLIFY) $(DIR_BUILD_SCRIPT)kickoff.js -o $(DIR_BUILD_SCRIPT)kickoff.min.js
-	$(UGLIFY) $(DIR_BUILD_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.min.js
+	$(UGLIFY) $(DIR_BUILD_SCRIPT)game.js -o $(DIR_BUILD_SCRIPT)game.min.js
 	echo "     \x1b[32mDONE!\x1b[0m"
 
 image:

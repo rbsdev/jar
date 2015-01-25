@@ -1,11 +1,11 @@
 var Scenario = {
-  initialize: function(game) {
-    var scaleX = game.stage.width / 2560;
-    var scaleY = game.stage.height / 1440;
+  initialize: function(phaser) {
+    var scaleX = phaser.stage.width / 2560;
+    var scaleY = phaser.stage.height / 1440;
 
-    this.layer3 = game.add.tileSprite(0, 0, game.stage.width, game.stage.height, 'layer03');
-    this.layer2 = game.add.tileSprite(0, 0, game.stage.width, game.stage.height, 'layer02');
-    this.layer1 = game.add.tileSprite(0, 0, game.stage.width, game.stage.height, 'layer01');
+    this.layer3 = phaser.add.tileSprite(0, 0, phaser.stage.width, phaser.stage.height, 'layer03');
+    this.layer2 = phaser.add.tileSprite(0, 0, phaser.stage.width, phaser.stage.height, 'layer02');
+    this.layer1 = phaser.add.tileSprite(0, 0, phaser.stage.width, phaser.stage.height, 'layer01');
 
     this.layer3.anchor.set(0, 0);
     this.layer2.anchor.set(0, 0);
