@@ -54,7 +54,8 @@ var Game = window.Game = {
     Game.phaser.physics.arcade.collide(Game.spaceship.element, Game.world.elements, Game.hit, null, this);
   },
 
-  hit: function (spaceship, world) {
-    console.log('wip - damage/kill/kill/elements', spaceship, world);
+  hit: function (spaceship) {
+    spaceship.animations.play('hit');
+    // console.log('wip - damage/kill/kill/elements', spaceship, world);
   }
 };
