@@ -3,6 +3,7 @@ var Scenario = require('./scenario.js');
 var Player = require('./player.js');
 var Elements = require('./elements.js');
 var World = require('./world.js');
+var Life = require('./life.js');
 
 var Game = window.Game = {
   initialize: function(Phaser) {
@@ -37,7 +38,7 @@ var Game = window.Game = {
 
     Game.elements.import({
       name: 'life',
-      module: require('./life.js')
+      module: Life,
     }).render('life', '100');
 
     Game.elements.import({
@@ -54,7 +55,9 @@ var Game = window.Game = {
     Game.phaser.physics.arcade.collide(Game.spaceship.element, Game.world.elements, Game.hit, null, this);
   },
 
-  hit: function (spaceship, world) {
-    console.log('wip - damage/kill/kill/elements', spaceship, world);
+  hit: function (spaceship, element) {
+    if (element.key === 'meteor') {
+      return Life.decrease(5);
+    }
   }
 };
