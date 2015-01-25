@@ -15,7 +15,8 @@ var Game = window.Game = {
 
   preload: function() {
     Game.phaser.load.spritesheet('spaceship', 'image/spaceship-spr.png', 160, 75, 8);
-    Game.phaser.load.audio('engine', 'sound/engine.wav');
+    Game.phaser.load.audio('engine', ['sound/boost.ogg', 'sound/boost.mp3']);
+    Game.phaser.load.audio('boost', ['sound/boost.ogg', 'sound/boost.mp3']);
     Game.phaser.load.image('layer01', 'image/layer01.png');
     Game.phaser.load.image('layer02', 'image/layer02.png');
     Game.phaser.load.image('layer03', 'image/layer03.png');
@@ -49,7 +50,8 @@ var Game = window.Game = {
     Game.scenario.render();
     Game.spaceship.render();
     Game.elements.render('timer');
-    Game.phaser.physics.arcade.collide(Game.spaceship.element, Game.world.elements, this.hit, null, this);
+    Game.world.render();
+    Game.phaser.physics.arcade.collide(Game.spaceship.element, Game.world.elements, Game.hit, null, this);
   },
 
   hit: function (spaceship, world) {
