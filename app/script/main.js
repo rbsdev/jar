@@ -4,14 +4,18 @@ var Player = require('./player.js');
 var Interface = require('./interface.js');
 var Spaceship = require('./spaceship.js');
 var MeteorGroup = require('./meteor-group.js');
+var Collision = require('./collision.js');
 
 var width = window.innerWidth;
 var height = window.innerHeight > 1440 ? 1440 : window.innerHeight;
+<<<<<<< HEAD
 var spaceship;
 
 var collisionHandler = function() {
   console.log('collision!');
 };
+=======
+>>>>>>> master
 
 window.main = function() {
   var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
@@ -21,11 +25,16 @@ window.main = function() {
       game.load.image('layer03', 'image/layer03.png');
       game.load.image('spaceship', 'image/spaceship.png');
       game.load.image('meteor', 'image/meteor.png');
+
+      game.load.audio('engine', 'sound/engine.wav');
+      game.load.audio('boost', 'sound/boost.wav');
+
+      this.collision = Collision.initialize(['meteor']);
     },
 
     create: function() {
       Scenario.initialize(game, width, height);
-      spaceship = Spaceship.initialize(game);
+      this.spaceship = Spaceship.initialize(game);
       Player.initialize(100,100,'Evandro');
       Interface.initialize(game);
 
@@ -46,6 +55,9 @@ window.main = function() {
 
       this.meteorGroup = new MeteorGroup(game, 3);
       this.meteorGroup.create();
+
+      var meteorGroup = new MeteorGroup(game, 10);
+      this.meteors = meteorGroup.create();
     },
 
     update: function() {
@@ -57,9 +69,11 @@ window.main = function() {
 
       this.meteorGroup.update();
 
-      this.meteorGroup.collection.forEach(function (meteor) {
-        game.physics.arcade.collide(spaceship, meteor.sprite, collisionHandler, null, that);
-      });
+      // this.meteorGroup.collection.forEach(function (meteor) {
+      //   game.physics.arcade.collide(spaceship, meteor.sprite, collisionHandler, null, that);
+      // });
+
+      game.physics.arcade.collide(this.spaceship, this.meteors, this.collision.handler, null, this);
     }
   }, false, false);
 };

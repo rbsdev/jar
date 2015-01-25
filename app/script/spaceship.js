@@ -8,15 +8,22 @@ var Spaceship = {
     this.game.physics.startSystem(window.Phaser.Physics.ARCADE);
     this.game.physics.enable(this.element, window.Phaser.Physics.ARCADE);
 
-    // this.element.body.checkCollision.up = true;
-    // this.element.body.checkCollision.down = true;
+    this.setSounds();
 
     return this.element;
   },
 
+  setSounds: function () {
+    var fx = this.game.add.audio('engine');
+    fx.allowMultipe = true;
+    fx.addMarker('slow', 0, 2, 0.2, true);
+
+    fx.play('slow');
+  },
+
   render: function() {
     if (this.game.input.keyboard.isDown(window.Phaser.Keyboard.SPACEBAR)) {
-      this.x += 20;
+      this.x += 2;
     } else {
       if (this.x <= 10) {
         this.x = 10;

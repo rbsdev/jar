@@ -1,3 +1,4 @@
 node_modules
 build
 .divshot-cache
+npm-debug.log

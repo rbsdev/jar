@@ -15,6 +15,8 @@ DIR_BUILD_IMAGE=$(DIR_BUILD)image/
 DIR_APP_IMAGE=$(DIR_APP)image/
 DIR_APP_VENDOR=$(DIR_APP)vendor/
 DIR_BUILD_VENDOR=$(DIR_BUILD)vendor/
+DIR_APP_SOUND=$(DIR_APP)sound/
+DIR_BUILD_SOUND=$(DIR_BUILD)sound/
 
 .SILENT:
 
@@ -58,13 +60,16 @@ image:
 
 tree:
 	printf 'genrating tree... '
+	mkdir -p $(DIR_BUILD)
 	mkdir -p $(DIR_BUILD_IMAGE)
 	mkdir -p $(DIR_BUILD_VENDOR)
 	mkdir -p $(DIR_BUILD_SCRIPT)
+	mkdir -p $(DIR_BUILD_SOUND)
 	cp $(DIR_APP)index.html $(DIR_BUILD)index.html
 	cp $(DIR_APP_IMAGE)*.png $(DIR_BUILD_IMAGE)
 	cp $(DIR_APP_VENDOR)* $(DIR_BUILD_VENDOR)
 	cp $(DIR_APP_SCRIPT)* $(DIR_BUILD_SCRIPT)
+	cp $(DIR_APP_SOUND)* $(DIR_BUILD_SOUND)
 	echo "       \x1b[32mDONE!\x1b[0m"
 
 test_js:
