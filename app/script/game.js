@@ -4,6 +4,7 @@ var Player = require('./player.js');
 var Elements = require('./elements.js');
 var World = require('./world.js');
 var Life = require('./life.js');
+var Power = require('./power.js');
 
 var Game = window.Game = {
   initialize: function(Phaser) {
@@ -43,7 +44,7 @@ var Game = window.Game = {
 
     Game.elements.import({
       name: 'power',
-      module: require('./power.js')
+      module: Power,
     }).render('power', '100');
   },
 
@@ -53,6 +54,8 @@ var Game = window.Game = {
     Game.elements.render('timer');
     Game.world.render();
     Game.phaser.physics.arcade.collide(Game.spaceship.element, Game.world.elements, Game.hit, null, this);
+
+    Power.decrease(0.005);
   },
 
   hit: function (spaceship, element) {
