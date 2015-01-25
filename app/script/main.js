@@ -4,13 +4,10 @@ var Player = require('./player.js');
 var Interface = require('./interface.js');
 var Spaceship = require('./spaceship.js');
 var MeteorGroup = require('./meteor-group.js');
+var Collision = require('./collision.js');
 
 var width = window.innerWidth;
 var height = window.innerHeight > 1440 ? 1440 : window.innerHeight;
-
-var collisionHandler = function() {
-  console.log('collision!');
-};
 
 window.main = function() {
   var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
@@ -20,6 +17,8 @@ window.main = function() {
       game.load.image('layer03', 'image/layer03.png');
       game.load.image('spaceship', 'image/spaceship.png');
       game.load.image('meteor', 'image/meteor.png');
+
+      this.collision = Collision.initialize(['meteor']);
     },
 
     create: function() {
@@ -51,7 +50,8 @@ window.main = function() {
       Scenario.render();
       Spaceship.render();
       Interface.render('timer');
-      game.physics.arcade.collide(this.spaceship, this.meteors, collisionHandler, null, this);
+
+      game.physics.arcade.collide(this.spaceship, this.meteors, this.collision.handler, null, this);
     }
   }, false, false);
 };

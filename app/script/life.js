@@ -1,11 +1,11 @@
 var Life = {
   total: 3,
 
-  initialize: function(game) {
+  initialize: function() {
     return this;
   },
 
-  render: function(value) {
+  render: function() {
     return this;
   },
 
