@@ -8,14 +8,6 @@ var Collision = require('./collision.js');
 
 var width = window.innerWidth;
 var height = window.innerHeight > 1440 ? 1440 : window.innerHeight;
-<<<<<<< HEAD
-var spaceship;
-
-var collisionHandler = function() {
-  console.log('collision!');
-};
-=======
->>>>>>> master
 
 window.main = function() {
   var game = new window.Phaser.Game(width, height, window.Phaser.AUTO, '', {
@@ -53,15 +45,15 @@ window.main = function() {
         module: require('./power.js')
       }).render('power', '100');
 
-      this.meteorGroup = new MeteorGroup(game, 3);
-      this.meteorGroup.create();
+      // this.meteorGroup = new MeteorGroup(game, 3);
+      // this.meteorGroup.create();
 
       var meteorGroup = new MeteorGroup(game, 10);
       this.meteors = meteorGroup.create();
     },
 
     update: function() {
-      var that = this;
+      // var that = this;
 
       Scenario.render();
       Spaceship.render();
