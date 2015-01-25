@@ -18,12 +18,10 @@ assets = [
   'vendor/firebase-2.0.4.js',
   'vendor/phaser-2.2.2.js',
   'script/game.js',
-  'image/spaceship.png',
   'image/layer01.png',
   'image/layer02.png',
   'image/layer03.png',
-  'image/meteor.png',
-  'sound/engine.wav'
+  'image/meteor.png'
 ];
 
 dom = {
