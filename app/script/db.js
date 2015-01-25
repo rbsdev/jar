@@ -1,14 +1,20 @@
 var orderBy = function(obj, callback, context) {
   var tuples = [];
-  for (var key in obj) tuples.push([key, obj[key]]);
-  tuples.sort(function(a, b) { return a[1] < b[1] ? 1 : a[1] > b[1] ? -1 : 0 });
+
+  for (var key in obj) {
+    if(obj.hasOwnProperty(key)) {
+      tuples.push([key, obj[key]]);
+    }
+  }
+
+  tuples.sort(function(a, b) { return a[1] < b[1] ? 1 : a[1] > b[1] ? -1 : 0; });
 
   var length = tuples.length;
   while (length--) callback.call(context, tuples[length][0], tuples[length][1]);
 };
 
 var DB = {
-  users: new Firebase('https://ss15-verage.firebaseio.com/users/'),
+  users: new window.Firebase('https://ss15-verage.firebaseio.com/users/'),
 
   save: function(username, time) {
     this.users.child(username).set(time);
