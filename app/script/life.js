@@ -1,21 +1,21 @@
 var Life = {
+  total: 3,
+
   initialize: function(game) {
-    console.log(game);
     return this;
   },
 
   render: function(value) {
-    console.log(value);
     return this;
   },
 
-  update: function(value) {
-    console.log(value);
+  decrease: function() {
+    this.total--;
     return this;
   },
 
-  remove: function(value) {
-    console.log(value);
+  increase: function() {
+    this.total++;
     return this;
   }
 };
