@@ -1,10 +1,9 @@
 var Timer = {
   initialize: function(game) {
-    this.game = game;
-    this.phaser = this.game.phaser;
-    this.size = this.phaser.world.height / 16 >> 0;
+    this.phaser = game.phaser;
+    this.size = this.phaser.world.height / 30 >> 0;
 
-    this.text = this.phaser.add.text(this.phaser.world.width - (this.size >> 2), 0, '00:00', {
+    this.text = this.phaser.add.text(this.phaser.world.width - this.size, this.size, '00:00', {
       fill: 'rgb(50, 47, 53)',
       font: 'italic ' + this.size + 'px "Source Sans Pro"'
     });
