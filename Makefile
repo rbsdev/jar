@@ -40,7 +40,7 @@ install:
 	echo "\x1b[32mDONE!\x1b[0m"
 
 run:
-	node server.js
+	$(HTTP_SERVER) -p 8000
 
 jshint:
 	$(JSHINT) $(DIR_APP_SCRIPT)*.js
@@ -77,5 +77,5 @@ test_js:
 
 build: tree script image
 
-watch:
+watch: tree script
 	$(VIGILIA) '$(DIR_APP_SCRIPT)*.js':'make script' '$(DIR_APP)*.html':'make tree'

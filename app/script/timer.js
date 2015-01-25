@@ -3,9 +3,10 @@ var Timer = {
     this.game = game;
     this.phaser = this.game.phaser;
     this.size = this.phaser.world.height / 16 >> 0;
+
     this.text = this.phaser.add.text(this.phaser.world.width - (this.size >> 2), 0, '00:00', {
-      fill: '#FFFFFF',
-      font: this.size + 'px Futura'
+      fill: 'rgb(50, 47, 53)',
+      font: 'italic ' + this.size + 'px "Source Sans Pro"'
     });
 
     this.text.anchor.set(1, 0);

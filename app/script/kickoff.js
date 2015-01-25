@@ -1,24 +1,22 @@
-var assets,
-    ask,
-    askGithub,
+var ask,
+    assets,
     data = [ ],
+    dom,
     done,
     error,
     grab,
     index = 0,
     kickoff,
-    landing,
     load,
-    meter,
     parse,
     progress,
+    reset,
     start,
-    total,
-    withGithub,
-    withoutGithub;
+    total;
 
 assets = [
-  'vendor/phaser.min.js',
+  'vendor/firebase-2.0.4.js',
+  'vendor/phaser-2.2.2.js',
   'script/game.js',
   'image/spaceship.png',
   'image/layer01.png',
@@ -28,20 +26,25 @@ assets = [
   'sound/engine.wav'
 ];
 
+dom = {
+  go: '.landing-go',
+  input: '.landing-input',
+  landing: '.landing',
+  skip: '.landing-skip',
+  use: '.landing-use'
+};
+
 total = assets.length;
 
 ask = function() {
-  withGithub.classList.add('hidden');
-  withoutGithub.classList.add('hidden');
-
-  askGithub.classList.remove('hidden');
-  askGithub.focus();
+  dom.landing.classList.add('landing-grab');
+  dom.input.focus();
 };
 
 done = function() {
   var body = document.body;
 
-  landing.classList.add('landing-ready');
+  dom.landing.classList.add('landing-open');
 
   assets.forEach(function(asset, index) {
     var script;
@@ -58,37 +61,48 @@ done = function() {
 };
 
 error = function() {
-  askGithub.disabled = false;
+  dom.go.disabled = false;
+  dom.input.classList.add('landing-error');
+  dom.input.disabled = false;
+  dom.input.focus();
+  dom.input.select();
 };
 
 grab = function(event) {
-  var xhr;
+  var username = dom.input.value.trim(),
+      xhr;
 
-  if (event.which !== 13) {
+  if (dom.input.classList.contains('landing-error')) {
+    dom.input.classList.remove('landing-error');
+  }
+
+  if (event.which !== 13 || (event.which === 13 && username.length === 0)) {
     return;
   }
 
-  askGithub.disabled = true;
+  dom.go.disabled = true;
+  dom.input.disabled = true;
 
   xhr = new XMLHttpRequest();
 
   xhr.addEventListener('error', error);
   xhr.addEventListener('load', parse.bind(this, xhr));
 
-  xhr.open('GET', 'https://api.github.com/users/' + askGithub.value.trim());
+  xhr.open('GET', 'https://api.github.com/users/' + username);
   xhr.send();
 };
 
 kickoff = function() {
-  askGithub = document.querySelector('.landing-ask-github');
-  landing = document.querySelector('.landing');
-  meter = document.querySelector('.landing-progress-meter');
-  withGithub = document.querySelector('.landing-with-github');
-  withoutGithub = document.querySelector('.landing-without-github');
+  dom.go = document.querySelector(dom.go);
+  dom.input = document.querySelector(dom.input);
+  dom.landing = document.querySelector(dom.landing);
+  dom.skip = document.querySelector(dom.skip);
+  dom.use = document.querySelector(dom.use);
 
-  askGithub.addEventListener('keyup', grab);
-  withGithub.addEventListener('click', ask);
-  withoutGithub.addEventListener('click', start);
+  dom.go.addEventListener('click', grab.bind(this, { which: 13 }));
+  dom.input.addEventListener('keyup', grab);
+  dom.skip.addEventListener('click', start);
+  dom.use.addEventListener('click', ask);
 
   load();
 };
@@ -117,11 +131,19 @@ load = function(pxhr) {
 parse = function(xhr) {
   var data;
 
+  if (xhr.status !== 200) {
+    return error();
+  }
+
   try {
     data = JSON.parse(xhr.response);
-  } catch (error) {
-    error(error);
+  } catch (fail) {
+    return error();
   }
+
+  // if (data.type.toLowerCase() !== 'user') {
+  //   return error();
+  // }
 
   start(data);
 };
@@ -133,16 +155,22 @@ progress = function(event) {
     return;
   }
 
-  ratio = ((event.loaded / event.total) * index) / total;
-  meter.style.right = ((1 - ratio) * 100).toFixed(5) + '%';
+  ratio = ((index - 1) + (event.loaded / event.total)) / total;
+  dom.landing.style.right = ((1 - ratio) * 100).toFixed(5) + '%';
 };
 
-start = function() {
-  withGithub.disabled = true;
-  withoutGithub.disabled = true;
+reset = function() {
+  dom.landing.classList.add('landing-hidden');
+  dom.landing.classList.remove('landing-close');
+  dom.landing.classList.remove('landing-grab');
+  dom.landing.classList.remove('landing-open');
+};
 
-  landing.classList.add('hidden');
-  window.Game.initialize(window.Phaser);
+start = function(data) {
+  window.Game.initialize(window.Phaser, data);
+  window.setTimeout(reset, 400);
+
+  dom.landing.classList.add('landing-close');
 };
 
 window.addEventListener('load', kickoff);
