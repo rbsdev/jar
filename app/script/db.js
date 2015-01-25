@@ -1,10 +1,7 @@
 var DB = {
+  users: new Firebase('https://ss15-verage.firebaseio.com/users/'),
   save: function(username, time) {
-    var users = new Firebase('https://ss15-verage.firebaseio.com/users/');
-    var params = {};
-    params[username] = time;
-
-    users.set(params);
+    this.users.child(username).set(time);
   }
 };
 
