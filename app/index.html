@@ -79,7 +79,7 @@
         border-width: 6px;
         color: rgb(245, 242, 215);
         transition: background-color 0.1s, color 0.1s;
-        transform: translate(490%, 11px);
+        transform: translate(440%, 11px);
         width: 57px;
         height: 57px;
       }
@@ -106,10 +106,14 @@
         padding: 0px 5px;
         pointer-events: none;
         text-transform: uppercase;
-        transform: translateX(-50%);
-        transition: border 0.1s;
+        transform: translateX(-55%);
+        transition: border 0.1s, color 0.1s;
         width: 520px;
         height: 60px;
+      }
+
+      .landing-input:disabled {
+        color: rgba(245, 242, 215, 0.6);
       }
 
       .landing-input:focus {
@@ -123,6 +127,14 @@
 
       .landing-input::-moz-placeholder {
         color: rgb(245, 242, 215);
+      }
+
+      .landing-input::selection {
+        background: rgba(245, 242, 215, 0.2);
+      }
+
+      .landing-input::-moz-selection {
+        background: rgba(245, 242, 215, 0.2);
       }
 
       .landing-logo {
@@ -190,11 +202,20 @@
         height: 32px;
       }
 
-      /***/
+      /*
+       * overriders
+       */
 
-      .landing-error {
-        border-color: rgb(192, 57, 43);
-        border-width: 2px;
+      .landing-error, .landing-error:focus {
+        color: rgb(192, 57, 43);
+      }
+
+      .landing-error::selection {
+        background: rgba(192, 57, 43, 0.2);
+      }
+
+      .landing-error::-moz-selection {
+        background: rgba(192, 57, 43, 0.2);
       }
 
       .landing-open {
@@ -248,6 +269,31 @@
 
       .landing-grab .landing-input {
         pointer-events: auto;
+      }
+
+      .landing-close {
+        top: 50%;
+        bottom: 50%;
+        transition: top 0.4s ease-out, bottom 0.4s ease-out;
+      }
+
+      .landing-close .landing-use {
+        transform: scale(0.4) translate(-260%, 75%);
+        transition: transform 0.4s ease-in-out;
+      }
+
+      .landing-close .landing-skip {
+        transform: scale(0.4) translate(0%, 75%);
+        transition: transform 0.4s ease-in-out;
+      }
+
+      .landing-close .landing-logo {
+        transform: scale(0.4) translate(0%, -250%);
+        transition: transform 0.4s ease-in-out;
+      }
+
+      .landing-hidden {
+        display: none;
       }
     </style>
   </head>
