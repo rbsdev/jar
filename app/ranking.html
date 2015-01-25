@@ -73,7 +73,7 @@
       var html = '';
 
       window.DB.all(function(users) {
-        users.forEach(function(obj, index) {
+        users.slice(0, 10).forEach(function(obj, index) {
           var name = Object.keys(obj)[0];
           var time = obj[name];
 
