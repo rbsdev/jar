@@ -4,13 +4,30 @@ var Player = require('./player.js');
 var Interface = require('./interface.js');
 var Spaceship = require('./spaceship.js');
 var MeteorGroup = require('./meteor-group.js');
+var Collision = require('./collision.js');
 
 var width = window.innerWidth;
 var height = window.innerHeight > 1440 ? 1440 : window.innerHeight;
-var meteors, spaceship;
 
-var collisionHandler = function() {
-  console.log('collision!');
+var debounce = function (func, threshold, execAsap) {
+  var timeout;
+
+  return function debounced () {
+    var obj = this, args = arguments;
+
+    function delayed () {
+      if (!execAsap) { func.apply(obj, args); }
+      timeout = null; 
+    }
+
+    if (timeout) {
+      clearTimeout(timeout);
+    } else if (execAsap) {
+      func.apply(obj, args);
+    }
+
+    timeout = setTimeout(delayed, threshold || 100); 
+  }; 
 };
 
 window.main = function() {
@@ -21,11 +38,16 @@ window.main = function() {
       game.load.image('layer03', 'image/layer03.png');
       game.load.image('spaceship', 'image/spaceship.png');
       game.load.image('meteor', 'image/meteor.png');
+
+      game.load.audio('engine', 'sound/engine.wav');
+      game.load.audio('boost', 'sound/boost.wav');
+
+      this.collision = Collision.initialize(['meteor']);
     },
 
     create: function() {
       Scenario.initialize(game, width, height);
-      spaceship = Spaceship.initialize(game);
+      this.spaceship = Spaceship.initialize(game);
       Player.initialize(100,100,'Evandro');
       Interface.initialize(game);
 
@@ -45,14 +67,16 @@ window.main = function() {
       }).render('power', '100');
 
       var meteorGroup = new MeteorGroup(game, 10);
-      meteors = meteorGroup.create();
+      this.meteors = meteorGroup.create();
     },
 
     update: function() {
       Scenario.render();
       Spaceship.render();
       Interface.render('timer');
-      game.physics.arcade.collide(spaceship, meteors, collisionHandler, null, this);
+
+      game.physics.arcade.collide(this.spaceship, this.meteors, debounce(this.collision.handler, 300),
+                                  null, this);
     }
   }, false, false);
 };

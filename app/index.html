@@ -64,12 +64,17 @@
         font-family: 'Source Sans Pro', sans-serif;
         font-size: 20px;
         font-style: italic;
+        opacity: 1;
         outline: 0;
         pointer-events: none;
         text-transform: uppercase;
-        transition: background-color 0.1s, transform 0.2s ease-out 1.4s;
+        transition: background-color 0.1s, opacity 0.1s, transform 0.2s ease-out 1.4s;
         width: 270px;
         height: 80px;
+      }
+
+      .landing-button:disabled {
+        opacity: 0.6;
       }
 
       .landing-go {
@@ -340,6 +345,7 @@
       </div>
     </div>
 
+    <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
     <script src="script/kickoff.min.js"></script>
   </body>
 </html>

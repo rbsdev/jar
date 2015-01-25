@@ -1,15 +1,11 @@
 var Timer = {
-  game: null,
-  text: null,
-
   initialize: function(game) {
-    var size = game.world.height / 16 >> 0;
-
     this.game = game;
-
-    this.text = this.game.add.text(game.world.width - (size >> 2), 0, '00:00', {
+    this.phaser = this.game.phaser;
+    this.size = this.phaser.world.height / 16 >> 0;
+    this.text = this.phaser.add.text(this.phaser.world.width - (this.size >> 2), 0, '00:00', {
       fill: '#FFFFFF',
-      font: size + 'px Futura'
+      font: this.size + 'px Futura'
     });
 
     this.text.anchor.set(1, 0);
@@ -28,7 +24,7 @@ var Timer = {
   },
 
   render: function() {
-    var time = this.game.time.totalElapsedSeconds(),
+    var time = this.phaser.time.totalElapsedSeconds(),
         minutes = this.pad(time / 60 >> 0),
         seconds = this.pad(time % 60 >> 0);
 

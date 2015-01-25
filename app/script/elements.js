@@ -1,6 +1,6 @@
-var Interface = {
+var Elements = {
   initialize: function(game) {
-    this.game     = game;
+    this.game = game;
     this.elements = {};
     return this;
   },
@@ -26,4 +26,4 @@ var Interface = {
   }
 };
 
-module.exports = Interface;
+module.exports = Elements;

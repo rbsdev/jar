@@ -15,6 +15,8 @@ DIR_BUILD_IMAGE=$(DIR_BUILD)image/
 DIR_APP_IMAGE=$(DIR_APP)image/
 DIR_APP_VENDOR=$(DIR_APP)vendor/
 DIR_BUILD_VENDOR=$(DIR_BUILD)vendor/
+DIR_APP_SOUND=$(DIR_APP)sound/
+DIR_BUILD_SOUND=$(DIR_BUILD)sound/
 
 .SILENT:
 
@@ -38,7 +40,7 @@ install:
 	echo "\x1b[32mDONE!\x1b[0m"
 
 run:
-	node server.js
+	$(HTTP_SERVER) -p 8000
 
 jshint:
 	$(JSHINT) $(DIR_APP_SCRIPT)*.js
@@ -46,9 +48,9 @@ jshint:
 script: jshint
 	printf 'building scripts... '
 	$(BROWSERIFY) $(DIR_APP_SCRIPT)kickoff.js -o $(DIR_BUILD_SCRIPT)kickoff.js
-	$(BROWSERIFY) $(DIR_APP_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.js
+	$(BROWSERIFY) $(DIR_APP_SCRIPT)game.js -o $(DIR_BUILD_SCRIPT)game.js
 	$(UGLIFY) $(DIR_BUILD_SCRIPT)kickoff.js -o $(DIR_BUILD_SCRIPT)kickoff.min.js
-	$(UGLIFY) $(DIR_BUILD_SCRIPT)main.js -o $(DIR_BUILD_SCRIPT)main.min.js
+	$(UGLIFY) $(DIR_BUILD_SCRIPT)game.js -o $(DIR_BUILD_SCRIPT)game.min.js
 	echo "     \x1b[32mDONE!\x1b[0m"
 
 image:
@@ -58,11 +60,16 @@ image:
 
 tree:
 	printf 'genrating tree... '
+	mkdir -p $(DIR_BUILD)
 	mkdir -p $(DIR_BUILD_IMAGE)
 	mkdir -p $(DIR_BUILD_VENDOR)
+	mkdir -p $(DIR_BUILD_SCRIPT)
+	mkdir -p $(DIR_BUILD_SOUND)
 	cp $(DIR_APP)index.html $(DIR_BUILD)index.html
 	cp $(DIR_APP_IMAGE)*.png $(DIR_BUILD_IMAGE)
 	cp $(DIR_APP_VENDOR)* $(DIR_BUILD_VENDOR)
+	cp $(DIR_APP_SCRIPT)* $(DIR_BUILD_SCRIPT)
+	cp $(DIR_APP_SOUND)* $(DIR_BUILD_SOUND)
 	echo "       \x1b[32mDONE!\x1b[0m"
 
 test_js:

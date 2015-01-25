@@ -16,12 +16,13 @@ var ask,
 
 assets = [
   'vendor/phaser.min.js',
-  'script/main.js',
+  'script/game.js',
+  'image/spaceship.png',
   'image/layer01.png',
   'image/layer02.png',
   'image/layer03.png',
-  'image/nave.png',
-  'image/spaceship.png'
+  'image/meteor.png',
+  'sound/engine.wav'
 ];
 
 dom = {
@@ -165,10 +166,10 @@ reset = function() {
 };
 
 start = function(data) {
-  window.main(data);
+  window.Game.initialize(window.Phaser, data);
   window.setTimeout(reset, 400);
 
-  dom.landing.classList.add('landing-close')
+  dom.landing.classList.add('landing-close');
 };
 
 window.addEventListener('load', kickoff);
