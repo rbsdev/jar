@@ -44,11 +44,11 @@ var World = {
         delay: 1000
       }],
       [{
-        element: ['meteor', this.phaser.stage.width, this.collidersRoutes[0], 221, 213, 1, 1, 0, 0, false, 100, 100],
+        element: ['meteor', this.phaser.stage.width, this.collidersRoutes[0], 221, 213, 0.85, 0.85, 0, 0, false, 100, 100],
         delay: 2000,
       },
       {
-        element: ['meteor', this.phaser.stage.width, this.collidersRoutes[1], 221, 213, 0.5, 0.5, 0, 0, false, 100, 100],
+        element: ['meteor', this.phaser.stage.width, this.collidersRoutes[1], 221, 213, 0.85, 0.85, 0, 0, false, 100, 100],
         delay: 1000,
       },
       {
