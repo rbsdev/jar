@@ -10,8 +10,17 @@ var Spaceship = {
     this.element.height = 80;
     this.element.body.immovable = false;
     this.x = 0;
+    this.setSounds();
 
     return this;
+  },
+
+  setSounds: function () {
+    var fx = this.phaser.add.audio('engine');
+    fx.allowMultipe = true;
+    fx.addMarker('slow', 0, 2, 1, true);
+
+    fx.play('slow');
   },
 
   render: function() {

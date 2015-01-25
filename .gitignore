@@ -1,4 +1,8 @@
 node_modules
 build
 .divshot-cache
+<<<<<<< HEAD
 .DS_Store
+=======
+npm-debug.log
+>>>>>>> 8130aa403abc579a95c102659e86738427ac7e2f

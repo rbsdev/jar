@@ -1,21 +1,21 @@
 var Life = {
-  initialize: function(phaser) {
-    console.log(phaser);
+  initialize: function(game) {
+    this.game = game;
+    this.total = 3;
     return this;
   },
 
-  render: function(value) {
-    console.log(value);
+  render: function() {
     return this;
   },
 
-  update: function(value) {
-    console.log(value);
+  decrease: function() {
+    this.total--;
     return this;
   },
 
-  remove: function(value) {
-    console.log(value);
+  increase: function() {
+    this.total++;
     return this;
   }
 };

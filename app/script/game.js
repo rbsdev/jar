@@ -15,6 +15,7 @@ var Game = window.Game = {
 
   preload: function() {
     Game.phaser.load.spritesheet('spaceship', 'image/spaceship.png', 200, 168, 9);
+    Game.phaser.load.audio('engine', 'sound/engine.wav');
     Game.phaser.load.image('layer01', 'image/layer01.png');
     Game.phaser.load.image('layer02', 'image/layer02.png');
     Game.phaser.load.image('layer03', 'image/layer03.png');
