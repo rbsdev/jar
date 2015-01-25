@@ -18,6 +18,9 @@ window.main = function() {
       game.load.image('spaceship', 'image/spaceship.png');
       game.load.image('meteor', 'image/meteor.png');
 
+      game.load.audio('engine', 'sound/engine.wav');
+      game.load.audio('boost', 'sound/boost.wav');
+
       this.collision = Collision.initialize(['meteor']);
     },
 
