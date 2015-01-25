@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Jar - Ranking</title>
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:900italic" rel="stylesheet">
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body, html {
+        height: 100%;
+      }
+
+      body {
+        background-color: rgb(245, 242, 215);
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <table id="ranking"></table>
+
+    <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+    <script src="script/db.js"></script>
+    <script>
+      var table = document.querySelector('#ranking');
+      var template = '<tr><td>{{ NAME }}</td><td>{{ TIME }}</td></tr>';
+      var html = '';
+
+      window.DB.all(function(users) {
+        users.forEach(function(obj) {
+          var name = Object.keys(obj)[0];
+          var time = obj[name];
+
+          var td = template.replace('{{ NAME }}', name)
+                           .replace('{{ TIME }}', time);
+
+          html += td;
+        });
+
+        table.innerHTML = html;
+      });
+    </script>
+
+  </body>
+
+</html>

@@ -40,6 +40,7 @@ install:
 	echo "\x1b[32mDONE!\x1b[0m"
 
 run:
+	# node server.js
 	$(HTTP_SERVER) -p 8000
 
 jshint:
@@ -65,7 +66,7 @@ tree:
 	mkdir -p $(DIR_BUILD_VENDOR)
 	mkdir -p $(DIR_BUILD_SCRIPT)
 	mkdir -p $(DIR_BUILD_SOUND)
-	cp $(DIR_APP)index.html $(DIR_BUILD)index.html
+	cp $(DIR_APP)*.html $(DIR_BUILD)
 	cp $(DIR_APP_IMAGE)*.png $(DIR_BUILD_IMAGE)
 	cp $(DIR_APP_VENDOR)* $(DIR_BUILD_VENDOR)
 	cp $(DIR_APP_SCRIPT)* $(DIR_BUILD_SCRIPT)
