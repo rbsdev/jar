@@ -31,6 +31,10 @@ var Player = {
     return this[attr];
   },
 
+  dead: function() {
+    console.log('Player is dead!');
+  },
+
   decrease: function(attr, value) {
     this[attr] = (this[attr] - value);
     return this[attr];
