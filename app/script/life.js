@@ -45,7 +45,7 @@ Life = {
   },
 
   render: function() {
-    this.text.amount.text = this.amount + '%';
+    this.text.amount.text = (this.amount >> 0) + '%';
 
     return this;
   },
