@@ -4,8 +4,6 @@ var World = {
     this.phaser = game.phaser;
     this.elements = this.phaser.add.group();
     this.elements.enableBody = true;
-    this.roof  = this.createCollider(null, 0, 0, this.phaser.stage.width, 110, 1, 1, 0, 0, true);
-    this.floor = this.createCollider(null, 0, this.phaser.stage.height - 110, this.phaser.stage.width, 110, 1, 1, 0, 0, true);
 
     // current colliders
     this.currentColliders = [];
