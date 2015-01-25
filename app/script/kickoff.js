@@ -29,7 +29,7 @@ dom = {
 total = assets.length;
 
 ask = function() {
-
+  dom.landing.classList.add('landing-grab');
 };
 
 done = function() {
