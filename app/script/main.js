@@ -7,7 +7,7 @@ var MeteorGroup = require('./meteor-group.js');
 
 var width = window.innerWidth;
 var height = window.innerHeight > 1440 ? 1440 : window.innerHeight;
-var meteors, spaceship;
+var spaceship;
 
 var collisionHandler = function() {
   console.log('collision!');
@@ -44,15 +44,20 @@ window.main = function() {
         module: require('./power.js')
       }).render('power', '100');
 
-      var meteorGroup = new MeteorGroup(game, 10);
-      meteors = meteorGroup.create();
+      this.meteorGroup = new MeteorGroup(game, 3);
+      this.meteorGroup.create();
     },
 
     update: function() {
+      var that = this;
+
       Scenario.render();
       Spaceship.render();
       Interface.render('timer');
-      game.physics.arcade.collide(spaceship, meteors, collisionHandler, null, this);
+
+      this.meteorGroup.collection.forEach(function (meteor) {
+        game.physics.arcade.collide(spaceship, meteor, collisionHandler, null, that);
+      });
     }
   }, false, false);
 };
