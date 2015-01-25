@@ -1,3 +1,5 @@
+var Power = require('./power.js');
+
 var Spaceship = {
   initialize: function(game) {
     this.phaser = game.phaser;
@@ -72,6 +74,8 @@ var Spaceship = {
 
       this.boosting = true;
       this.animate('boost');
+
+      Power.decrease(0.05);
     } else {
       this.boosting = false;
       this.animate('normal');
