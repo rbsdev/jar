@@ -7,7 +7,17 @@ var Spaceship = {
     this.game.physics.startSystem(window.Phaser.Physics.ARCADE);
     this.game.physics.enable(this.element, window.Phaser.Physics.ARCADE);
 
+    this.setSounds();
+
     return this.element;
+  },
+
+  setSounds: function () {
+    var fx = this.game.add.audio('engine');
+    fx.allowMultipe = true;
+    fx.addMarker('slow', 0, 2, 0.2, true);
+
+    fx.play('slow');
   },
 
   render: function() {

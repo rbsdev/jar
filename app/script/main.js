@@ -21,6 +21,9 @@ window.main = function() {
       game.load.image('layer03', 'image/layer03.png');
       game.load.image('spaceship', 'image/spaceship.png');
       game.load.image('meteor', 'image/meteor.png');
+
+      game.load.audio('engine', 'sound/engine.wav');
+      game.load.audio('boost', 'sound/boost.wav');
     },
 
     create: function() {
