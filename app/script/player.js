@@ -1,3 +1,5 @@
+// var Timer = require('./timer.js');
+
 var Player = {
   initialize: function(game, name) {
     this.setAttr('attrs', {
@@ -31,7 +33,16 @@ var Player = {
   },
 
   dead: function() {
+    // var tween = this.game.phaser.add.tween(Timer.text);
+
     this.game.phaser.paused = true;
+
+    // tween.to({
+    //   x: this.phaser.world.width >> 1,
+    //   y: this.phaser.world.height >> 1
+    // }, 1000);
+
+    // tween.start();
   },
 
   decrease: function(attr, value) {
