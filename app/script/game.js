@@ -50,7 +50,7 @@ var Game = window.Game = {
     Game.spaceship.render();
     Game.elements.render('timer');
     Game.world.render();
-    Game.phaser.physics.arcade.collide(Game.spaceship.element, Game.world.elements, this.hit, null, this);
+    Game.phaser.physics.arcade.collide(Game.spaceship.element, Game.world.elements, Game.hit, null, this);
   },
 
   hit: function (spaceship, world) {
