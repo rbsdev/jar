@@ -13,7 +13,7 @@ MeteorGroup.prototype = {
   },
 
   create: function() {
-    var meteor, i;
+    var i;
 
     // this.game.physics.enable(element, window.Phaser.Physics.ARCADE);
     // element.anchor.setTo(1.5, 0);
@@ -25,12 +25,7 @@ MeteorGroup.prototype = {
 
     for (i = 0; i < this.amount; i++) {
       // this.meteors.create(i*48, i*50, 'meteor').body.moves = true;
-      meteor = new Meteor();
-      meteor.initialize(this.game);
-      meteor.createSprite();
-      meteor.moveTo(Math.random() * -2, 0);
-
-      this.add(meteor.sprite);
+      this.instantiateElement();
     }
 
     // var tween = this.game.add.tween(this.meteors).to( { x: 400 }, 2000, 
@@ -39,11 +34,31 @@ MeteorGroup.prototype = {
     // tween.onLoop.add(this.descend, this);
 
     // return this.meteors;
+  },
+
+  instantiateElement: function () {
+    var meteor = new Meteor();
+    var x = window.innerWidth + Math.random() * (window.innerWidth * 0.5);
+    var y = 130 + Math.random() * (window.innerHeight * 0.5);
+
+    meteor.initialize(this.game);
+    meteor.createSprite();
+    meteor.setAnchor(0.5, 0.5);
+    meteor.setPosition(x, y);
+
+    this.add(meteor);
+
     return meteor;
   },
 
   add: function (meteor) {
     this.collection.push(meteor);
+  },
+
+  update: function () {
+    this.collection.forEach(function (meteor) {
+      meteor.update();
+    });
   }
 };
 

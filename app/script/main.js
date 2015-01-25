@@ -55,8 +55,10 @@ window.main = function() {
       Spaceship.render();
       Interface.render('timer');
 
+      this.meteorGroup.update();
+
       this.meteorGroup.collection.forEach(function (meteor) {
-        game.physics.arcade.collide(spaceship, meteor, collisionHandler, null, that);
+        game.physics.arcade.collide(spaceship, meteor.sprite, collisionHandler, null, that);
       });
     }
   }, false, false);

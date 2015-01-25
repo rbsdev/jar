@@ -3,16 +3,20 @@ var Spaceship = {
     this.game = game;
     this.element = this.game.add.sprite(170, 48, 'spaceship');
     this.element.anchor.setTo(0, 0.65);
+    // this.element.collideWorldBounds = true;
     this.x = 10;
     this.game.physics.startSystem(window.Phaser.Physics.ARCADE);
     this.game.physics.enable(this.element, window.Phaser.Physics.ARCADE);
+
+    // this.element.body.checkCollision.up = true;
+    // this.element.body.checkCollision.down = true;
 
     return this.element;
   },
 
   render: function() {
     if (this.game.input.keyboard.isDown(window.Phaser.Keyboard.SPACEBAR)) {
-      this.x += 2;
+      this.x += 20;
     } else {
       if (this.x <= 10) {
         this.x = 10;
