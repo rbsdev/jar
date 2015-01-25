@@ -9,7 +9,7 @@ var Collision = {
   handler: function(spaceship, element) {
     var isEnemy = Collision.enemies.indexOf(element.key) !== -1;
     if (isEnemy) {
-      console.log('is enemy!');
+      console.log('it is enemy!');
     }
   }
 };
