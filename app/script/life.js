@@ -37,7 +37,7 @@ Life = {
     this.amount = Math.max(0, this.amount - amount);
     this.render();
 
-    if (this.total === 0) {
+    if (this.amount === 0) {
       Player.dead();
     }
 
@@ -52,6 +52,7 @@ Life = {
 
   reset: function() {
     this.amount = 100;
+    this.render();
 
     return this;
   },
