@@ -40,7 +40,7 @@ install:
 	echo "\x1b[32mDONE!\x1b[0m"
 
 run:
-	node server.js
+	$(HTTP_SERVER) -p 8000
 
 jshint:
 	$(JSHINT) $(DIR_APP_SCRIPT)*.js
