@@ -6,7 +6,7 @@ var World = require('./world.js');
 
 var Game = window.Game = {
   initialize: function(Phaser) {
-    this.phaser = new Phaser.Game( window.innerWidth, window.innerHeight, Phaser.AUTO, '', {
+    this.phaser = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '', {
       preload: this.preload,
       create: this.create,
       update: this.update
@@ -14,19 +14,19 @@ var Game = window.Game = {
   },
 
   preload: function() {
+    Game.phaser.load.spritesheet('spaceship', 'image/spaceship.png', 200, 168, 9);
     Game.phaser.load.image('layer01', 'image/layer01.png');
     Game.phaser.load.image('layer02', 'image/layer02.png');
     Game.phaser.load.image('layer03', 'image/layer03.png');
-    Game.phaser.load.image('spaceship', 'image/spaceship.png');
     Game.phaser.load.image('meteor', 'image/meteor.png');
   },
 
   create: function() {
     Game.player = Player.initialize(100, 100, 'Evandro');
-    Game.world = World.initialize(Game.phaser);
     Game.scenario = Scenario.initialize(Game.phaser);
-    Game.spaceship = Spaceship.initialize(Game.phaser);
     Game.elements = Elements.initialize(Game.phaser);
+    Game.world = World.initialize(Game);
+    Game.spaceship = Spaceship.initialize(Game);
 
     Game.elements.import({
       name: 'timer',
@@ -48,5 +48,10 @@ var Game = window.Game = {
     Game.scenario.render();
     Game.spaceship.render();
     Game.elements.render('timer');
+    Game.phaser.physics.arcade.collide(Game.spaceship.element, Game.world.elements, this.hit, null, this);
+  },
+
+  hit: function (spaceship, world) {
+    console.log('wip - damage/kill/kill/elements', spaceship, world);
   }
 };

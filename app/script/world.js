@@ -1,25 +1,25 @@
 var World = {
-  initialize: function() {
-    // console.log(game.add.group);
-    // this.element = game.add.group();
-    // this.element.enableBody = true;
-    // this.physicsBodyType = window.Phaser.Physics.ARCADE;
+  initialize: function(game) {
+    this.phaser = game.phaser;
+    this.elements = this.phaser.add.group();
+    this.elements.enableBody = true;
 
-    // for (var i = 0; i < 10; i++)
-    // {
-    //     var pineapple = pineapples.create(200 + i * 48,50, 'pineapple');
+    // add roof
+    this.roof = this.phaser.add.sprite(0, 0, null, 0, this.elements);
+    this.roof.width = this.phaser.stage.width;
+    this.roof.height = 110;
+    this.roof.body.immovable = true;
 
-    //     //This allows your sprite to collide with the world bounds like they were rigid objects
-    //     pineapple.body.collideWorldBounds=true;
-    //     pineapple.body.gravity.x = game.rnd.integerInRange(-50, 50);
-    //     pineapple.body.gravity.y = 100 + Math.random() * 100;
-    //     pineapple.body.bounce.setTo(0.9, 0.9);
-    // }
+    // add floor
+    this.floor = this.phaser.add.sprite(0, this.phaser.stage.height - 110, null, 0, this.elements);
+    this.floor.width = this.phaser.stage.width;
+    this.floor.height = 110;
+    this.floor.body.immovable = true;
+
+    // wip - add meteor
+    // add - rocks
 
     return this;
-  },
-
-  render: function() {
   }
 };
 
