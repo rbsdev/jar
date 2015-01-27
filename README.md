@@ -4,3 +4,5 @@ Jar is a infinite side-scrolling game where a exploration team spaceship is lost
 
 
 There was a plan to give some extra fuel to users that pass theirs github username. The amount of fuel it was according with their public repos quantity. (not implemented)
+
+##### [Play now!](rbsdev.github.com/jar/build)
