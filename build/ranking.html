@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Jar - Ranking</title>
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:900italic" rel="stylesheet">
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-style: italic;
+        color: rgb(245, 242, 215);
+      }
+
+      body, html {
+        height: 100%;
+      }
+
+      body {
+        background-color: rgb(7, 5, 17);
+        margin: 0;
+      }
+
+      .ranking {
+        width: 500px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      table {
+        opacity: 0;
+        width: 500px; 
+        margin: 0 auto;
+        margin-bottom: 60px;
+      }
+
+      td:nth-child(1) { width: 5%; }
+      td:nth-child(2) { width: 65%; }
+      td:nth-child(3) { text-align: right; width: 30%; }
+
+      .bt-fb {
+        opacity: 0;
+        background-color: rgb(245, 242, 215);
+        color: rgb(7, 5, 17);
+        text-decoration: none;
+        padding: 15px;
+        border-radius: 10px;
+      }
+
+      .on {
+        transition: opacity 2s;
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="ranking">
+      <h1>Ranking</h1>
+      <table id="tb-ranking"></table>
+      <a href="http://www.facebook.com/sharer/sharer.php?u=http://ss15-verage.divshot.io/" target="_blank" class="bt-fb" id="share">Share on Facebook</a>
+    </div>
+    <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+    <script src="script/db.js"></script>
+    <script>
+      var table = document.querySelector('#tb-ranking');
+      var template = '<tr><td>{{ POSITION }}</td><td>{{ NAME }}</td><td>{{ TIME }}s</td></tr>';
+      var html = '';
+
+      window.DB.all(function(users) {
+        users.slice(0, 10).forEach(function(obj, index) {
+          var name = Object.keys(obj)[0];
+          var time = obj[name];
+
+          var td = template.replace('{{ POSITION }}', index)
+                           .replace('{{ NAME }}', name)
+                           .replace('{{ TIME }}', time);
+
+          html += td;
+        });
+
+        table.innerHTML = html;
+        table.className += ' on';
+        document.querySelector('#share').className += ' on';
+      });
+    </script>
+
+  </body>
+
+</html>
