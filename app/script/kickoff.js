@@ -13,7 +13,7 @@ var ask,
     reset,
     start,
     total;
-
+    
 assets = [
   'vendor/firebase-2.0.4.js',
   'vendor/phaser-2.2.2.js',
@@ -21,7 +21,10 @@ assets = [
   'image/layer01.png',
   'image/layer02.png',
   'image/layer03.png',
-  'image/meteor.png'
+  'image/meteor.png',
+  'image/spaceship-spr.png',
+  'sound/boost.ogg',
+  'sound/boost.mp3',
 ];
 
 dom = {

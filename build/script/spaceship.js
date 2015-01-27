@@ -73,12 +73,6 @@ var Spaceship = {
     this.boosting = false;
     this.animate('normal');
 
-    if (this.x <= 10) {
-      this.x = 10;
-    } else {
-      this.x -= 10;
-    }
-
     if (this.phaser.input.keyboard.isDown(window.Phaser.Keyboard.SPACEBAR)) {
       this.x += 5;
 
@@ -86,6 +80,12 @@ var Spaceship = {
       this.animate('boost');
 
       Power.decrease(0.05);
+    } else {
+      if (this.x <= 10) {
+        this.x = 10;
+      } else {
+        this.x -= 10;
+      }
     }
 
     if (this.phaser.input.activePointer.y < this.maxTop) {
