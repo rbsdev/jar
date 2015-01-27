@@ -9,11 +9,11 @@ var Spaceship = {
     // spaceship
     this.element = this.phaser.add.sprite(160, 75, 'spaceship');
     this.phaser.physics.arcade.enable(this.element);
-    // this.element.anchor.set(0,0.5);
-    // this.element.width = 160;
-    // this.element.height = 75;
     this.element.body.immovable = false;
     this.x = 0;
+
+    this.maxTop = Math.round(this.phaser.stage.height * 0.25) - (this.element.height);
+    this.maxBottom = Math.round(this.phaser.stage.height * 0.75);
 
     this.setAnimations();
     this.setSounds();
@@ -69,6 +69,10 @@ var Spaceship = {
   },
 
   render: function() {
+
+    this.boosting = false;
+    this.animate('normal');
+
     if (this.phaser.input.keyboard.isDown(window.Phaser.Keyboard.SPACEBAR)) {
       this.x += 5;
 
@@ -77,14 +81,19 @@ var Spaceship = {
 
       Power.decrease(0.05);
     } else {
-      this.boosting = false;
-      this.animate('normal');
-
       if (this.x <= 10) {
         this.x = 10;
       } else {
         this.x -= 10;
       }
+    }
+
+    if (this.phaser.input.activePointer.y < this.maxTop) {
+      this.phaser.input.activePointer.y = this.maxTop;
+    }
+
+    if (this.phaser.input.activePointer.y > this.maxBottom) {
+      this.phaser.input.activePointer.y = this.maxBottom;
     }
     
     this.playAudio();

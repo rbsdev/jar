@@ -1,6 +1,6 @@
 var World = {
   initialize: function(game) {
-    this.level = 10000;
+    this.level = 6000;
     this.phaser = game.phaser;
     this.elements = this.phaser.add.group();
     this.elements.enableBody = true;
@@ -61,6 +61,10 @@ var World = {
   },
 
   generateColliders: function() {
+    if (this.level > 3000) {
+      this.level = this.level - (this.phaser.time.totalElapsedSeconds() * 10);
+    }
+
     var colliders = this.collidersPatterns[Math.round(this.collidersPatterns.length * Math.random()) % this.collidersPatterns.length];
     for (var i = 0; i < colliders.length; i++) {
       this.insertCollider(this, colliders[i], this.currentColliders);
